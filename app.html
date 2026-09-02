@@ -308,7 +308,7 @@
         }
 
         /* 토글형 달력 스타일 */
-        .calendar-wrapper { position: relative; margin-top: 14px; min-height: 360px; }
+        .calendar-wrapper { position: relative; margin-top: 14px; }
         .calendar-container { background: #181d28; border-radius: 14px; padding: 12px; border: 1px solid var(--border-color); display: none; animation: fadeIn 0.3s ease; }
         .calendar-container.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
@@ -345,7 +345,7 @@
         .log-date-picker-nav { background: #1c222e; border: 1px solid var(--border-color); color: var(--text-main); border-radius: 8px; width: 30px; height: 30px; font-size: 1rem; cursor: pointer; }
         #log-date-picker-grid .cal-day.selected { border: 2px solid var(--primary-pink); box-shadow: 0 0 8px rgba(255,74,122,0.5); }
 
-        .calendar-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--border-color); font-size: 0.72rem; padding-left: 2px; padding-right: 2px; }
+        .calendar-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border-color); font-size: 0.72rem; padding-left: 2px; padding-right: 2px; }
         .legend-item { display: flex; align-items: center; gap: 5px; color: var(--text-sub); }
         .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
 
@@ -1118,11 +1118,7 @@
         <div class="card card-accent" style="background: #1d1720;">
             <h3 style="font-size: 0.9rem; margin-bottom: 8px; color: var(--primary-pink);" id="care-card-title">🧠 맞춤형 여성 케어 카드</h3>
             <p style="font-size: 0.8rem; line-height: 1.4; margin-bottom: 12px;" id="care-card-prescription">파트너 정보를 등록하시면 맞춤 지침서가 생성됩니다.</p>
-            <div style="background: #111319; border-radius: 8px; padding: 10px; border: 1px solid var(--border-color); margin-bottom: 10px;">
-                <p style="font-size: 0.70rem; color: var(--text-sub); font-weight: 600; margin-bottom: 4px;" data-i18n="care_kakao_label">카톡 템플릿</p>
-                <p style="font-size: 0.8rem; color: #fff;" id="care-card-kakaotemplate">"오늘 하루도 수고 많았어! 우리 이따 맛있는 거 먹자 💕"</p>
-            </div>
-            <button class="btn btn-secondary" style="padding: 8px; font-size: 0.75rem;" onclick="copyKakaoTemplate()" data-i18n="btn_copy">멘트 복사하기</button>
+
         </div>
 
         <!-- 🎁 배려 선물 추천 (제휴 마케팅) — 항목은 ads.json 의 gift_items 에서 불러옴 -->
@@ -3858,31 +3854,6 @@
         if (descText !== undefined) document.getElementById("dash-sync-desc").innerText = descText;
     }
 
-    function copyKakaoTemplate() {
-        var text = document.getElementById("care-card-kakaotemplate").innerText;
-        var ta = document.createElement("textarea");
-        ta.value = text;
-        ta.setAttribute("readonly", "");
-        ta.style.cssText = "position:fixed;left:0;top:0;opacity:0;width:1px;height:1px;padding:0;border:none;";
-        document.body.appendChild(ta);
-        ta.focus();
-        ta.select();
-        ta.setSelectionRange(0, ta.value.length);
-        var ok = false;
-        try { ok = document.execCommand("copy"); } catch(e) { ok = false; }
-        document.body.removeChild(ta);
-        if (ok) {
-            showToast((currentLang === "en") ? "📋 Copied!" : "📋 복사 완료!");
-        } else if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text).then(function() {
-                showToast((currentLang === "en") ? "📋 Copied!" : "📋 복사 완료!");
-            }).catch(function() {
-                showToast((currentLang === "en") ? "❌ Copy failed" : "❌ 복사 실패");
-            });
-        } else {
-            showToast((currentLang === "en") ? "❌ Copy failed" : "❌ 복사 실패");
-        }
-    }
     var clearGlobalToastTimeout;
     function showToast(msg) {
         const t = document.getElementById("toast-msg");
@@ -4193,16 +4164,13 @@
     function renderCareCard() {
         const titleEl = document.getElementById("care-card-title");
         const bodyEl = document.getElementById("care-card-prescription");
-        const kakaoEl = document.getElementById("care-card-kakaotemplate");
         if (!titleEl) return;
         const isEn = (currentLang === "en");
-        const defaultKakao = isEn ? "\"Great job today! Let's grab something tasty later 💕\"" : "\"오늘 하루도 수고 많았어! 우리 이따 맛있는 거 먹자 💕\"";
 
         const partner = (activePartnerIndex !== -1) ? linkedPartners[activePartnerIndex] : null;
         if (!partner) {
             titleEl.innerText = isEn ? "🧠 Personalized Care Card" : "🧠 맞춤형 케어 카드";
             bodyEl.innerText = isEn ? "Add a partner to generate personalized tips." : "파트너 정보를 등록하시면 맞춤 지침서가 생성됩니다.";
-            kakaoEl.innerText = defaultKakao;
             return;
         }
         const partnerGender = partner.partnerGender || (("age" in partner) ? "M" : "F");
@@ -4212,35 +4180,23 @@
             const logs = partner.dailyLogs || [];
             if (logs.length === 0) {
                 bodyEl.innerText = isEn ? "No logs yet. Add a log to get personalized care tips." : "아직 파트너의 로그 데이터가 없어요. 로그를 기록하면 맞춤 케어 팁이 제공됩니다.";
-                kakaoEl.innerText = isEn ? "\"Great job today! Love you 💕\"" : "\"오늘 하루도 고생 많았어! 사랑해 💕\"";
             } else {
                 const last = logs[0];
                 if (last.ehs <= 1 || last.ams <= 1) {
                     bodyEl.innerText = isEn ? "Condition may be low right now. Offer comfort and rest rather than pushing activities." : "컨디션이 저하되어 있을 수 있는 시기예요. 무리한 요구보다는 편안한 분위기와 휴식을 배려해주세요.";
-                    kakaoEl.innerText = isEn ? "\"Take it easy today! I've got you 😊\"" : "\"오늘은 좀 쉬어! 내가 챙겨줄게 😊\"";
                 } else if (last.ehs >= 3 && last.ams >= 3) {
                     bodyEl.innerText = isEn ? "Condition and energy look great. A good time to plan something active together." : "컨디션과 활력이 좋은 시기예요. 함께하는 활동을 늘려보기 좋은 타이밍입니다.";
-                    kakaoEl.innerText = isEn ? "\"You seem to be in great shape today! Date later? 💪\"" : "\"오늘 컨디션 좋아 보이네! 이따 데이트 어때? 💪\"";
                 } else {
                     bodyEl.innerText = isEn ? "Condition looks generally steady right now." : "전반적으로 안정적인 컨디션을 유지하고 있는 시기입니다.";
-                    kakaoEl.innerText = isEn ? "\"Great job today! Love you 💕\"" : "\"오늘 하루도 고생 많았어! 사랑해 💕\"";
                 }
             }
         } else {
             titleEl.innerText = isEn ? "🧠 Partner Care Card" : "🧠 맞춤형 여성 케어 카드";
             if (!partner.isLmpKnown || !partner.calculatedData) {
                 bodyEl.innerText = isEn ? "Add your partner's cycle to generate personalized tips." : "파트너의 생리 주기를 등록하시면 맞춤 지침서가 생성됩니다.";
-                kakaoEl.innerText = defaultKakao;
             } else {
                 const cycleCtx = partner.calculatedData;
                 bodyEl.innerText = getPhaseText(cycleCtx.phaseKey, "femaleSub");
-                const phaseKakaoMap = {
-                    "period": isEn ? "\"Rough day, huh? How about a warm cup of tea? 🫖\"" : "\"오늘 하루 힘들었지? 따뜻한 차 한잔 어때? 🫖\"",
-                    "ovulation": isEn ? "\"You look extra lovely today 😊 What should we do later?\"" : "\"오늘따라 네가 더 좋아 보여 😊 이따 뭐 하고 놀까?\"",
-                    "pms": isEn ? "\"Great job today! I'll take good care of you 💕\"" : "\"오늘 하루도 수고 많았어! 내가 잘해줄게 💕\""
-                };
-                const phaseKey = cycleCtx.cycleMap[toDateKey(new Date())] || "normal";
-                kakaoEl.innerText = phaseKakaoMap[phaseKey] || defaultKakao;
             }
         }
     }
@@ -4279,7 +4235,7 @@
         btn_browse: { ko: "둘러보기", en: "View" },
         btn_cancel_edit: { ko: "❌ 수정 취소", en: "❌ Cancel Edit" },
         btn_close: { ko: "닫기", en: "Close" },
-        btn_copy: { ko: "멘트 복사하기", en: "Copy Message" },
+
         btn_delete_partner: { ko: "⚠️ 파트너 관계 해제", en: "⚠️ Remove Partner" },
         btn_save: { ko: "💾 저장하기", en: "💾 Save" },
         cal_forecast: { ko: "◆ 예측 뷰", en: "◆ Forecast" },
@@ -4292,7 +4248,7 @@
         cal_next_month: { ko: "다음 달", en: "Next" },
         cal_this_month: { ko: "이번 달", en: "This Month" },
         cal_timeline: { ko: "● 실시간 타임라인", en: "● Live Timeline" },
-        care_kakao_label: { ko: "카톡 템플릿", en: "Message Template" },
+
         compare_explain: { ko: "등록된 파트너별 기록을 비교해 만족도가 높은 상대를 보여줍니다.", en: "Compares logs across partners to show who scores highest in satisfaction." },
         compare_title: { ko: "📈 파트너별 관계 비교 분석", en: "📈 Partner Comparison" },
         curation_creativity_label: { ko: "🎨 창의성 지수", en: "🎨 Creativity" },

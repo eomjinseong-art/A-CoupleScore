@@ -345,9 +345,9 @@
         .log-date-picker-nav { background: #1c222e; border: 1px solid var(--border-color); color: var(--text-main); border-radius: 8px; width: 30px; height: 30px; font-size: 1rem; cursor: pointer; }
         #log-date-picker-grid .cal-day.selected { border: 2px solid var(--primary-pink); box-shadow: 0 0 8px rgba(255,74,122,0.5); }
 
-        .calendar-legend { display: flex; flex-wrap: wrap; gap: 6px 10px; margin-top: 10px; font-size: 0.65rem; padding: 0 2px; }
-        .legend-item { display: flex; align-items: center; gap: 4px; color: var(--text-sub); }
-        .legend-dot { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
+        .calendar-legend { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 18px; font-size: 0.7rem; padding: 0 2px; }
+        .legend-item { display: flex; align-items: center; gap: 5px; color: var(--text-sub); }
+        .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
 
         .form-group { margin-bottom: 14px; }
         .form-group label { display: block; font-size: 0.82rem; color: var(--text-sub); margin-bottom: 6px; font-weight: 600; }
@@ -1065,10 +1065,10 @@
 
         <!-- 🧬 여성 호르몬 변동 모델 (F-Cycle) -->
         <div id="fcycle-chart-block" class="card" style="display: none;">
-            <h3 style="font-size: 0.9rem; margin-bottom: 6px; color: var(--primary-pink);" data-i18n="fcycle_title">🧬 호르몬 변동 그래프</h3>
-            <span class="term-explain" style="margin-bottom: 10px;" data-i18n="fcycle_explain">생리 주기를 기반으로 한 참고용 그래프입니다. 실제 측정치가 아닙니다.</span>
+            <h3 style="font-size: 0.95rem; margin-bottom: 10px; color: var(--primary-pink);" data-i18n="fcycle_title">🧬 호르몬 변동 그래프</h3>
+            <span class="term-explain" style="margin-bottom: 16px;" data-i18n="fcycle_explain">생리 주기를 기반으로 한 참고용 그래프입니다. 실제 측정치가 아닙니다.</span>
             <div id="fcycle-chart-svg"></div>
-            <div style="display: flex; justify-content: center; gap: 14px; margin-top: 8px; font-size: 0.65rem; color: var(--text-sub);">
+            <div style="display: flex; justify-content: center; gap: 16px; margin-top: 18px; font-size: 0.7rem; color: var(--text-sub);">
                 <span data-i18n="fcycle_estrogen">🟣 에스트로겐</span><span data-i18n="fcycle_progesterone">🟠 프로게스테론</span><span data-i18n="fcycle_serotonin">🟢 세로토닌</span>
             </div>
         </div>
@@ -3858,7 +3858,31 @@
         if (descText !== undefined) document.getElementById("dash-sync-desc").innerText = descText;
     }
 
-    function copyKakaoTemplate() { navigator.clipboard.writeText(document.getElementById("care-card-kakaotemplate").innerText); showToast((currentLang === "en") ? "📋 Copied!" : "📋 복사 완료!"); }
+    function copyKakaoTemplate() {
+        var text = document.getElementById("care-card-kakaotemplate").innerText;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function() {
+                showToast((currentLang === "en") ? "📋 Copied!" : "📋 복사 완료!");
+            }).catch(function() {
+                fallbackCopy(text);
+            });
+        } else {
+            fallbackCopy(text);
+        }
+    }
+    function fallbackCopy(text) {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed"; ta.style.left = "-9999px"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        try {
+            document.execCommand("copy");
+            showToast((currentLang === "en") ? "📋 Copied!" : "📋 복사 완료!");
+        } catch(e) {
+            showToast((currentLang === "en") ? "❌ Copy failed" : "❌ 복사 실패");
+        }
+        document.body.removeChild(ta);
+    }
     var clearGlobalToastTimeout;
     function showToast(msg) {
         const t = document.getElementById("toast-msg");

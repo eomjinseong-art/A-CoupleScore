@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+        <p style="font-size: 0.78rem; color: var(--text-sub); margin-bottom: 12px; text-align: center;" data-i18n="ob_subtitle">✅ 위 항목들을 입력하면 바로 앱을 사용할 수 있습니다.</p>
+        <button type="button" class="btn btn-primary" onclick="proceedToOnboarding()" data-i18n="ob_submit_btn">동의하고 시작하기</button>        <!-- 💫 궁합 정보는 선택사항으로 명시 -->
+        <div class="card" id="onboard-compat-card" style="border-color: var(--accent-purple); margin-top: 4px;">
+            <h3 style="font-size: 0.85rem; margin-bottom: 8px; color: var(--accent-purple);" data-i18n="ob_compat_title">💫 궁합 정보 (선택, 재미용)</h3><!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -41,7 +44,7 @@
 
         .mobile-frame {
             width: 100%;
-            max-width: 412px;
+            max-width: none;  /* 반응형: max-width 제한 제거 */
             background: #11141b;
             border-radius: 32px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
@@ -51,6 +54,35 @@
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            margin: 0 auto;
+        }
+
+        /* 반응형 레이아웃 */
+        @media (max-width: 480px) {
+            .mobile-frame {
+                width: 100%;
+                border-radius: 24px;
+                border-width: 2px;
+                max-width: 100%;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+            .mobile-frame {
+                width: 95%;
+                max-width: 600px;
+                border-radius: 32px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-frame {
+                width: 90%;
+                max-width: 900px;
+                border-radius: 40px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
         }
 
         .app-header {
@@ -659,7 +691,8 @@
             </div>
         </div>
 
-        <div class="card" id="onboard-body-card" style="border-color: var(--primary-blue); margin-top: 4px;">
+        <!-- 🩺 신체 정보는 '마이' 탭에서 입력하도록 온보딩에서 제거 -->
+        <div class="card" id="onboard-body-card" style="border-color: var(--primary-blue); margin-top: 4px; display: none;">
             <h3 style="font-size: 0.85rem; margin-bottom: 8px; color: var(--primary-blue);" data-i18n="ob_body_title">🩺 신체 정보 (선택, '마이'에서 사용)</h3>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                 <div class="form-group">
@@ -757,14 +790,14 @@
         <button type="button" class="btn btn-primary" onclick="proceedToOnboarding()" data-i18n="ob_submit_btn">동의하고 시작하기</button>
     </div>
 
-    <!-- ── VIEW 2: SYNC SETTING ── -->
+    <!-- ── VIEW 2: SYNC SETTING (파트너 등록 – 선택사항) ── -->
     <div id="view-sync" class="view-panel">
-        <h2 id="sync-view-title">파트너 등록 및 관리</h2>
-        <p class="subtitle" id="sync-view-subtitle">만나고 계신 상대방의 정보를 입력하면 즉시 웰니스 분석이 시작됩니다.</p>
+        <h2 id="sync-view-title">💜 파트너 등록 (선택)</h2>
+        <p class="subtitle" id="sync-view-subtitle">현재 거래를 나누는 연인의 정보를 입력하면 대시보드에서 맞춤 정보가 활성화됩니다. 혼자만 써도 괜찮습니다.</p>
 
-        <!-- Step 0. 나의 생리 주기 등록 (여성 유저 전용) -->
+        <!-- ⚙️ 나의 생리주기 커스텀 설정 (여성 유저 전용, Step 0) -->
         <div class="card" id="self-cycle-section" style="border-color: var(--primary-pink); display: none;">
-            <h3 style="font-size: 0.95rem; margin-bottom: 12px; color: var(--primary-pink);" data-i18n="sync_step0_title">1단계. 나의 주기 등록</h3>
+            <h3 style="font-size: 0.95rem; margin-bottom: 12px; color: var(--primary-pink);">⚙️ 나의 생리주기 커스텀 설정</h3>
             <div class="form-group" id="self-lmp-date-group">
                 <label data-i18n="sync_self_lmp_label">최근 생리 시작일</label>
                 <div class="date-field">
@@ -774,7 +807,19 @@
                     </button>
                 </div>
             </div>
-            <div class="consent-checkbox-wrapper" style="background: #161e2e; border: 1px solid #23354f; margin-top: -6px; margin-bottom: 0; padding: 10px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="form-group">
+                    <label style="font-size: 0.85rem;">평균 주기 (일)</label>
+                    <input type="number" id="self-cycle-length" class="input-control" min="21" max="35" placeholder="28" value="28" onchange="saveSelfCycle()">
+                    <span class="term-explain" style="font-size: 0.7rem; margin-top: 4px;">💡 보통 21~35일 범위</span>
+                </div>
+                <div class="form-group">
+                    <label style="font-size: 0.85rem;">생리 기간 (일)</label>
+                    <input type="number" id="self-cycle-period-length" class="input-control" min="3" max="7" placeholder="5" value="5" onchange="saveSelfCycle()">
+                    <span class="term-explain" style="font-size: 0.7rem; margin-top: 4px;">💡 보통 3~7일 범위</span>
+                </div>
+            </div>
+            <div class="consent-checkbox-wrapper" style="background: #161e2e; border: 1px solid #23354f; margin-top: 8px; margin-bottom: 0; padding: 10px;">
                 <input type="checkbox" id="chk-self-lmp-unknown" onchange="toggleSelfLmpInputVisibility(this.checked)">
                 <label for="chk-self-lmp-unknown" class="consent-label" style="color: var(--gold); font-weight: 700; font-size: 0.78rem;" data-i18n="sync_self_lmp_unknown">💡 아직 모릅니다 (나중에 등록)</label>
             </div>
@@ -843,7 +888,7 @@
                 <div class="form-group" id="lmp-date-picker-group">
                     <label data-i18n="sync_partner_lmp_label">파트너의 최근 생리 시작일</label>
                     <div class="date-field">
-                        <input type="text" id="partner-lmp-input" class="input-control date-display" readonly onclick="openDatePicker(this)" data-i18n-ph="date_ph" placeholder="연도-월-일">
+                        <input type="text" id="partner-lmp-input" class="input-control date-display" readonly onchange="savePartnerCycle()" onclick="openDatePicker(this)" data-i18n-ph="date_ph" placeholder="연도-월-일">
                         <button type="button" class="date-pick-btn" onclick="openDatePicker(document.getElementById('partner-lmp-input'))">📅
                             <input type="date" class="date-native-picker" data-sync="partner-lmp-input" tabindex="-1">
                         </button>
@@ -1209,38 +1254,45 @@
             </div>
             <span class="term-explain" style="margin-bottom: 6px;" data-i18n="log_calorie_explain">MET 공식 기반 소모 칼로리 추정치이며, 웨어러블 심박수 데이터 없이 계산되는 참고용 정보입니다.</span>
 
-            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 6px 0 16px 0;">
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 6px 0 10px 0;">
 
-            <h3 style="font-size: 0.95rem; margin-bottom: 4px; color: var(--gold);" id="daily-log-vitality-title">남성 3대 활력 지표</h3>
-            <span class="term-explain" style="margin-bottom: 12px;" data-i18n="log_vitality_explain">가명·수치화된 지표이며, 순화된 표현을 사용합니다.</span>
+            <!-- 🔼 상세 입력 (Accordion 토글) -->
+            <button type="button" class="accordion-header" id="accordion-vitality-toggle" onclick="toggleAccordion('vitality')" style="width: 100%; padding: 12px 0; font-size: 0.85rem; font-weight: 700; color: var(--accent-purple); background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; margin-bottom: 0;">
+                <span>🔽 더 자세한 활력 정보 (선택)</span>
+                <span id="accordion-vitality-icon" style="font-size: 1rem;">▼</span>
+            </button>
+            <div id="accordion-vitality-content" style="display: none; padding-top: 12px;">
+                <h4 style="font-size: 0.85rem; margin-bottom: 8px; color: var(--gold);" id="daily-log-vitality-title-detail">남성 활력 지표</h4>
+                <span class="term-explain" style="margin-bottom: 12px;" data-i18n="log_vitality_explain">가명·수치화된 지표이며, 순화된 표현을 사용합니다.</span>
 
-            <div class="form-group">
-                <label id="daily-log-ehs-label">① 에너지 강도 (EHS)</label>
-                <select id="daily-log-ehs" class="input-control">
-                    <option value="1">1단계</option>
-                    <option value="2">2단계</option>
-                    <option value="3">3단계</option>
-                    <option value="4">4단계</option>
-                </select>
-                <span class="term-explain" id="daily-log-ehs-explain">발기 시 단단함과 힘의 정도를 4단계로 표현한 지표입니다. 숫자가 높을수록 강도가 높음을 의미합니다.</span>
-            </div>
-            <div class="form-group">
-                <label id="daily-log-pedt-label">② 리듬 제어 (PEDT)</label>
-                <select id="daily-log-pedt" class="input-control">
-                    <option value="1">1단계</option>
-                    <option value="2">2단계</option>
-                    <option value="3">3단계</option>
-                </select>
-                <span class="term-explain" id="daily-log-pedt-explain">관계 중 사정 시점을 원하는 만큼 조절할 수 있었는지를 나타내는 지표입니다. 숫자가 높을수록 조절이 잘 되었음을 의미합니다.</span>
-            </div>
-            <div class="form-group">
-                <label id="daily-log-ams-label">③ 남성 컨디션 (AMS)</label>
-                <select id="daily-log-ams" class="input-control">
-                    <option value="1">1단계</option>
-                    <option value="2">2단계</option>
-                    <option value="3">3단계</option>
-                </select>
-                <span class="term-explain" id="daily-log-ams-explain">그날그날의 전반적인 피로도, 수면의 질, 컨디션 상태를 종합적으로 나타낸 지표입니다. 숫자가 높을수록 컨디션이 좋았음을 의미합니다.</span>
+                <div class="form-group">
+                    <label id="daily-log-ehs-label-detail">① 에너지 강도</label>
+                    <select id="daily-log-ehs" class="input-control">
+                        <option value="1">1단계 (약함)</option>
+                        <option value="2">2단계 (보통)</option>
+                        <option value="3">3단계 (좋음)</option>
+                        <option value="4">4단계 (우수)</option>
+                    </select>
+                    <span class="term-explain" id="daily-log-ehs-explain" style="display: none;">발기 시 단단함과 힘의 정도를 4단계로 표현한 지표입니다. 숫자가 높을수록 강도가 높음을 의미합니다.</span>
+                </div>
+                <div class="form-group">
+                    <label id="daily-log-pedt-label-detail">② 리듬 제어</label>
+                    <select id="daily-log-pedt" class="input-control">
+                        <option value="1">1단계 (어려움)</option>
+                        <option value="2">2단계 (보통)</option>
+                        <option value="3">3단계 (양호)</option>
+                    </select>
+                    <span class="term-explain" id="daily-log-pedt-explain" style="display: none;">관계 중 사정 시점을 원하는 만큼 조절할 수 있었는지를 나타내는 지표입니다. 숫자가 높을수록 조절이 잘 되었음을 의미합니다.</span>
+                </div>
+                <div class="form-group">
+                    <label id="daily-log-ams-label-detail">③ 신체 컨디션</label>
+                    <select id="daily-log-ams" class="input-control">
+                        <option value="1">1단계 (피로함)</option>
+                        <option value="2">2단계 (보통)</option>
+                        <option value="3">3단계 (활기찬)</option>
+                    </select>
+                    <span class="term-explain" id="daily-log-ams-explain" style="display: none;">그날그날의 전반적인 피로도, 수면의 질, 컨디션 상태를 종합적으로 나타낸 지표입니다. 숫자가 높을수록 컨디션이 좋았음을 의미합니다.</span>
+                </div>
             </div>
 
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 6px 0 16px 0;">
@@ -1669,15 +1721,22 @@
         return cycleMap;
     }
 
-    function generateCalculatedCycle(dateString) {
-        const today = new Date(); const cycleMap = generateCycleMap(dateString, 28, 5);
-        const todayKey = toDateKey(today); const todayType = cycleMap[todayKey] || "normal";
+    function generateCalculatedCycle(dateString, cycleLength, periodLength) {
+        // cycleLength, periodLength가 제공되지 않으면 사용자 설정에서 읽음
+        if (!cycleLength || !periodLength) {
+            cycleLength = parseInt(document.getElementById("self-cycle-length")?.value || "28") || 28;
+            periodLength = parseInt(document.getElementById("self-cycle-period-length")?.value || "5") || 5;
+        }
+        const today = new Date();
+        const cycleMap = generateCycleMap(dateString, cycleLength, periodLength);
+        const todayKey = toDateKey(today);
+        const todayType = cycleMap[todayKey] || "normal";
         let phaseLabel, femaleSub, maleSub, score;
         if (todayType === "period") { phaseLabel = "월경기 (생리 중)"; femaleSub = "에스트로겐 저하로 통증 및 피로감이 증가합니다."; maleSub = "컨디션 저하 시기, 배려와 휴식 지원이 필요합니다."; score = 45; }
         else if (todayType === "ovulation") { phaseLabel = "배란기(추정)"; femaleSub = "에스트로겐 변화가 있어 보이는 시기입니다. 본 정보는 참고용이며 피임/임신 판단 목적에는 쓰지 마세요."; maleSub = "참고용 지표로만 보세요. 피임·임신 판단을 위한 기준으로 쓰지 마세요."; score = 92; }
         else if (todayType === "pms") { phaseLabel = "PMS 민감기 (감정 기복 주의)"; femaleSub = "프로게스테론 변동으로 감정 변화가 생길 수 있습니다. 본 정보는 참고용입니다."; maleSub = "감정 기복에 대응하는 안정적인 태도가 중요합니다."; score = 58; }
         else { phaseLabel = "안정기 (황체기)"; femaleSub = "호르몬 균형 유지 중, 컨디션 안정적입니다."; maleSub = "전반적으로 안정적인 컨디션 유지 구간입니다."; score = 74; }
-        return { lmpDateStr: dateString, score: score, phase: phaseLabel, femaleSub: femaleSub, maleSub: maleSub, phaseKey: todayType, cycleMap: cycleMap };
+        return { lmpDateStr: dateString, score: score, phase: phaseLabel, femaleSub: femaleSub, maleSub: maleSub, phaseKey: todayType, cycleMap: cycleMap, cycleLength: cycleLength, periodLength: periodLength };
     }
 
     const PHASE_TEXT = {
@@ -2312,10 +2371,28 @@
     function saveSelfCycle() {
         const val = document.getElementById("self-lmp-input").value;
         if (!val) return;
+        const cycleLen = parseInt(document.getElementById("self-cycle-length")?.value || "28") || 28;
+        const periodLen = parseInt(document.getElementById("self-cycle-period-length")?.value || "5") || 5;
         currentUser.selfLmpKnown = true;
-        currentUser.selfCycleData = generateCalculatedCycle(val);
+        currentUser.selfCycleLength = cycleLen;  // 커스텀 주기 저장
+        currentUser.selfPeriodLength = periodLen;  // 생리 기간 저장
+        currentUser.selfCycleData = generateCalculatedCycle(val, cycleLen, periodLen);
         showToast((currentLang === "en") ? "🔄 Your cycle info has been saved!" : "🔄 나의 주기 정보가 저장되었습니다!");
         if (currentUser.consented) switchPartnerData(activePartnerIndex !== -1 ? activePartnerIndex : "none");
+        saveAppState();
+    }
+
+    function savePartnerCycle() {
+        if (activePartnerIndex === -1 || !linkedPartners[activePartnerIndex]) return;
+        const partner = linkedPartners[activePartnerIndex];
+        if (partner.partnerGender !== "F") return;  // 여성 파트너만 대상
+        const val = document.getElementById("partner-lmp-input").value;
+        if (!val) return;
+        // 현재는 기본값으로 저장 (향후 확대 가능)
+        partner.calculatedData = generateCalculatedCycle(val, 28, 5);
+        partner.isLmpKnown = true;
+        showToast((currentLang === "en") ? "🔄 Partner's cycle info has been saved!" : "🔄 파트너의 주기 정보가 저장되었습니다!");
+        switchPartnerData(activePartnerIndex);
         saveAppState();
     }
 
@@ -2528,7 +2605,8 @@
         logEventToSheet("signup", { hasBodyStats: !!currentUser.bodyStats, hasCompatInfo: !!(currentUser.mbti || currentUser.bloodType || currentUser.zodiac) });
         saveAppState();
         showToast((currentLang === "en") ? "✔️ Profile saved!" : "✔️ 프로필 저장 완료!");
-        switchTab("sync");
+        // 온보딩 완료 후 대시보드로 바로 진입 (파트너 등록은 선택사항)
+        switchTab("dashboard");
         syncPendingPartnerTraits();
     }
 
@@ -2906,6 +2984,15 @@
 
     function closeLogDatePicker() {
         document.getElementById("log-date-picker-panel").style.display = "none";
+    }
+
+    function toggleAccordion(section) {
+        const contentEl = document.getElementById("accordion-" + section + "-content");
+        const iconEl = document.getElementById("accordion-" + section + "-icon");
+        if (!contentEl) return;
+        const isOpen = contentEl.style.display !== "none";
+        contentEl.style.display = isOpen ? "none" : "block";
+        if (iconEl) iconEl.innerHTML = isOpen ? "▼" : "▲";
     }
 
     function navigateLogDatePicker(dir) {
@@ -4417,6 +4504,18 @@
         currentUser = state.currentUser;
         linkedPartners = (state.linkedPartners || []).slice(0, 1);
         activePartnerIndex = (typeof state.activePartnerIndex === "number") ? state.activePartnerIndex : -1;
+
+        // 커스텀 주기 정보 복원 (저장되지 않았으면 기본값)
+        if (currentUser.selfCycleData && currentUser.selfCycleLength && currentUser.selfPeriodLength) {
+            // 복원된 정보로 selfCycleData 재생성
+            if (currentUser.selfLmpKnown && currentUser.selfCycleData.lmpDateStr) {
+                currentUser.selfCycleData = generateCalculatedCycle(
+                    currentUser.selfCycleData.lmpDateStr,
+                    currentUser.selfCycleLength,
+                    currentUser.selfPeriodLength
+                );
+            }
+        }
 
         // 랜딩페이지(index.html)에서 명시적으로 ?lang=en/ko 를 달고 들어온 경우, 저장된 언어보다 우선 적용
         let urlLangOverride = null;

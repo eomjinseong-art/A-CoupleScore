@@ -600,7 +600,10 @@
                         <input type="date" class="date-native-picker" data-sync="trial-lmp-input" tabindex="-1">
                     </button>
                 </div>
-                <span class="term-explain" style="margin-top: 6px; cursor: pointer; text-decoration: underline; color: var(--primary-pink);" onclick="runOnboardingTrialApprox()" data-i18n="trial_dont_know">정확한 날짜를 몰라요 → 그래도 체험하기</span>
+                <div class="consent-checkbox-wrapper" style="background: #161e2e; border: 1px solid #23354f; margin-top: 8px; margin-bottom: 0; padding: 10px;">
+                    <input type="checkbox" id="chk-trial-lmp-unknown" onchange="toggleTrialLmpUnknown(this.checked)">
+                    <label for="chk-trial-lmp-unknown" class="consent-label" style="color: var(--gold); font-weight: 700; font-size: 0.78rem;" data-i18n="trial_dont_know">💡 아직 모릅니다 (나중에 등록)</label>
+                </div>
             </div>
             <div class="form-group">
                 <label data-i18n="trial_whose_label">이 날짜는 누구의 것인가요?</label>
@@ -2357,10 +2360,17 @@
         return null;
     }
 
+    function toggleTrialLmpUnknown(isChecked) {
+        if (!isChecked) return;
+        runOnboardingTrialApprox();
+    }
+
     function runOnboardingTrialApprox() {
         if (!trialWhose) {
             const isEn = (currentLang === "en");
             showToast(isEn ? "⚠️ Please select whose date this is first." : "⚠️ 먼저 누구의 날짜인지 선택해 주세요.");
+            const checkbox = document.getElementById("chk-trial-lmp-unknown");
+            if (checkbox) checkbox.checked = false;
             return;
         }
         const approxDate = new Date(); approxDate.setDate(approxDate.getDate() - 10);
@@ -4335,7 +4345,7 @@
         trial_whose_self: { ko: "나예요", en: "It's me" },
         trial_whose_partner: { ko: "파트너예요", en: "It's my partner" },
         trial_date_label: { ko: "최근 생리 시작일", en: "Last Period Start Date" },
-        trial_dont_know: { ko: "정확한 날짜를 몰라요 → 그래도 체험하기", en: "Don't know the exact date → Try it anyway" },
+        trial_dont_know: { ko: "💡 아직 모릅니다 (나중에 등록)", en: "💡 Not sure yet (add later)" },
         trial_btn: { ko: "🔮 지금 바로 보기", en: "🔮 See It Now" },
         share_title: { ko: "📤 나의 결과 공유하기", en: "📤 Share My Result" },
         share_explain: { ko: "케미 지수·활력 나이·등급·베스트 데이를 이미지 카드로 저장해 SNS에 공유해보세요.", en: "Save your chemistry score, vitality age, tier, and best day as an image to share on social media." },

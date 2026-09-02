@@ -345,7 +345,7 @@
         .log-date-picker-nav { background: #1c222e; border: 1px solid var(--border-color); color: var(--text-main); border-radius: 8px; width: 30px; height: 30px; font-size: 1rem; cursor: pointer; }
         #log-date-picker-grid .cal-day.selected { border: 2px solid var(--primary-pink); box-shadow: 0 0 8px rgba(255,74,122,0.5); }
 
-        .calendar-legend { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 18px; font-size: 0.7rem; padding: 0 2px; }
+        .calendar-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--border-color); font-size: 0.72rem; padding-left: 2px; padding-right: 2px; }
         .legend-item { display: flex; align-items: center; gap: 5px; color: var(--text-sub); }
         .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
 
@@ -1064,8 +1064,8 @@
         </div>
 
         <!-- 🧬 여성 호르몬 변동 모델 (F-Cycle) -->
-        <div id="fcycle-chart-block" class="card" style="display: none;">
-            <h3 style="font-size: 0.95rem; margin-bottom: 10px; color: var(--primary-pink);" data-i18n="fcycle_title">🧬 호르몬 변동 그래프</h3>
+        <div id="fcycle-chart-block" class="card" style="display: none; margin-top: 24px;">
+            <h3 style="font-size: 0.95rem; margin-bottom: 12px; color: var(--primary-pink);" data-i18n="fcycle_title">🧬 호르몬 변동 그래프</h3>
             <span class="term-explain" style="margin-bottom: 16px;" data-i18n="fcycle_explain">생리 주기를 기반으로 한 참고용 그래프입니다. 실제 측정치가 아닙니다.</span>
             <div id="fcycle-chart-svg"></div>
             <div style="display: flex; justify-content: center; gap: 16px; margin-top: 18px; font-size: 0.7rem; color: var(--text-sub);">
@@ -3860,28 +3860,28 @@
 
     function copyKakaoTemplate() {
         var text = document.getElementById("care-card-kakaotemplate").innerText;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.cssText = "position:fixed;left:0;top:0;opacity:0;width:1px;height:1px;padding:0;border:none;";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        ta.setSelectionRange(0, ta.value.length);
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch(e) { ok = false; }
+        document.body.removeChild(ta);
+        if (ok) {
+            showToast((currentLang === "en") ? "📋 Copied!" : "📋 복사 완료!");
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text).then(function() {
                 showToast((currentLang === "en") ? "📋 Copied!" : "📋 복사 완료!");
             }).catch(function() {
-                fallbackCopy(text);
+                showToast((currentLang === "en") ? "❌ Copy failed" : "❌ 복사 실패");
             });
         } else {
-            fallbackCopy(text);
-        }
-    }
-    function fallbackCopy(text) {
-        var ta = document.createElement("textarea");
-        ta.value = text;
-        ta.style.position = "fixed"; ta.style.left = "-9999px"; ta.style.opacity = "0";
-        document.body.appendChild(ta); ta.select();
-        try {
-            document.execCommand("copy");
-            showToast((currentLang === "en") ? "📋 Copied!" : "📋 복사 완료!");
-        } catch(e) {
             showToast((currentLang === "en") ? "❌ Copy failed" : "❌ 복사 실패");
         }
-        document.body.removeChild(ta);
     }
     var clearGlobalToastTimeout;
     function showToast(msg) {

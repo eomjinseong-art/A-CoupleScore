@@ -1,0 +1,5 @@
+slot,product,hook,desc,url,order,active
+couple,데이트 코스 추천,오늘의 분위기에 어울리는 데이트,둘만의 리듬에 맞는 데이트 코스를 추천해드려요,https://example.com/date,1,TRUE
+male,활력 보충제,바쁜 일상 속 컨디션 회복,하루 피로를 줄이고 체력 유지에 도움을 줍니다,https://example.com/male-boost,2,TRUE
+female,여성용 컨디션 케어,기분과 컨디션을 함께 관리해요,몸과 마음의 균형을 챙기는 데일리 루틴,https://example.com/female-care,3,TRUE
+bottom,커플 다이어리,서로를 기록하는 작은 습관,하루 한 줄로 관계를 더 가깝게 만들어요,https://example.com/diary,4,TRUE

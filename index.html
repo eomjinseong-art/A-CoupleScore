@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>그날의 남녀 — 우리 커플은 얼마나 잘 맞을까?</title>
+<meta name="description" content="생리주기부터 데이트, 컨디션까지. 회원가입 없이, 서버 저장 없이, 내 기기에만 기록되는 커플 웰니스 서비스 '그날의 남녀'. 30초 만에 우리 커플 케미를 확인해보세요.">
+
+<!-- Open Graph (SNS 공유 미리보기) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="그날의 남녀 — 우리 커플은 얼마나 잘 맞을까?">
+<meta property="og:description" content="30초 만에 확인하는 우리 커플 케미. 회원가입 없이, 내 기기에만 기록됩니다.">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+    :root {
+        --bg-color: #0d0f12;
+        --card-bg: #161a22;
+        --primary-pink: #ff4a7a;
+        --primary-blue: #3b82f6;
+        --text-main: #f3f4f6;
+        --text-sub: #9ca3af;
+        --accent-purple: #8b5cf6;
+        --border-color: #242b35;
+        --gold: #f59e0b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        min-height: 100vh;
+    }
+
+    .wrap { max-width: 560px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── header ── */
+    header.site-header {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 18px 0; border-bottom: 1px solid var(--border-color);
+    }
+    .logo { font-size: 1.05rem; font-weight: 800; background: linear-gradient(45deg, var(--primary-pink), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 6px; }
+    .header-cta { font-size: 0.78rem; font-weight: 700; color: var(--text-main); background: #1c222e; border: 1px solid var(--border-color); border-radius: 10px; padding: 8px 14px; text-decoration: none; }
+
+    /* ── hero ── */
+    .hero { display: flex; flex-direction: column; align-items: center; padding: 46px 0 8px; text-align: center; }
+
+    .badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px; }
+    .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 0.7rem; font-weight: 700; color: var(--text-sub); background: #1c222e; border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 999px; }
+    .badge svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+    .venn-wrap { position: relative; width: 240px; height: 176px; margin-bottom: 12px; }
+    .venn-wrap svg { width: 100%; height: 100%; overflow: visible; }
+    .circle-a, .circle-b { mix-blend-mode: screen; opacity: 0; animation: floatIn .9s cubic-bezier(.22,1,.36,1) forwards; }
+    .circle-a { animation-delay: .1s; }
+    .circle-b { animation-delay: .25s; }
+    @keyframes floatIn { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: scale(1); } }
+
+    .venn-score { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); text-align: center; opacity: 0; animation: riseIn .6s ease-out .85s forwards; }
+    @keyframes riseIn { from { opacity: 0; transform: translate(-50%, -40%); } to { opacity: 1; transform: translate(-50%, -50%); } }
+    .venn-num { font-size: 32px; font-weight: 800; color: #fff; line-height: 1; }
+    .venn-suffix { font-size: 15px; font-weight: 700; color: rgba(255,255,255,.85); }
+    .venn-caption { font-size: 10.5px; color: rgba(255,255,255,.75); font-weight: 600; margin-top: 2px; }
+
+    .venn-tag-a, .venn-tag-b { position: absolute; font-size: 11px; font-weight: 700; color: #fff; background: rgba(0,0,0,0.25); padding: 3px 9px; border-radius: 999px; opacity: 0; animation: riseIn .5s ease-out 1.05s forwards; }
+    .venn-tag-a { left: 10px; top: 10px; }
+    .venn-tag-b { right: 6px; top: 10px; animation-delay: 1.15s; }
+
+    .eyebrow { font-size: 0.78rem; font-weight: 700; color: var(--accent-purple); letter-spacing: 0.04em; margin-bottom: 8px; }
+    h1 { font-size: 1.7rem; font-weight: 800; line-height: 1.35; margin: 0 0 10px; }
+    h1 .hl { background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .sub { font-size: 0.92rem; color: var(--text-sub); line-height: 1.6; margin: 0 auto 28px; max-width: 320px; }
+
+    /* ── CTA ── */
+    .cta-primary { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; max-width: 320px; padding: 17px 20px; border-radius: 16px; font-size: 1rem; font-weight: 700; border: none; cursor: pointer; text-decoration: none; color: #fff; background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple)); box-shadow: 0 16px 34px -14px rgba(139,92,246,0.55); margin: 0 auto 8px; }
+    .cta-note { font-size: 0.72rem; color: var(--text-sub); margin-bottom: 54px; }
+
+    /* ── features ── */
+    .section-title { font-size: 0.72rem; font-weight: 700; color: var(--text-sub); letter-spacing: 0.06em; text-transform: uppercase; text-align: center; margin-bottom: 18px; }
+    .features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 52px; }
+    .feature-card { display: block; text-decoration: none; color: inherit; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px 18px; transition: border-color .15s ease, transform .15s ease; }
+    .feature-card:active { transform: scale(0.985); }
+    .feature-icon { font-size: 1.4rem; margin-bottom: 8px; display: block; }
+    .feature-title { font-size: 0.98rem; font-weight: 700; margin-bottom: 4px; }
+    .feature-desc { font-size: 0.82rem; color: var(--text-sub); line-height: 1.5; }
+    .feature-card.pink { border-color: rgba(255,74,122,0.25); }
+    .feature-card.blue { border-color: rgba(59,130,246,0.25); }
+    .feature-card.purple { border-color: rgba(139,92,246,0.25); }
+
+    /* ── trust ── */
+    .trust { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 18px; padding: 24px 22px; margin-bottom: 52px; }
+    .trust-title { font-size: 0.98rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .trust-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .trust-list li { font-size: 0.85rem; color: var(--text-sub); line-height: 1.55; padding-left: 20px; position: relative; }
+    .trust-list li::before { content: "✓"; position: absolute; left: 0; color: var(--primary-pink); font-weight: 800; }
+
+    /* ── footer ── */
+    footer { text-align: center; padding: 0 0 48px; }
+    .footer-cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 15px 32px; border-radius: 14px; font-size: 0.92rem; font-weight: 700; text-decoration: none; color: #fff; background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple)); margin-bottom: 20px; }
+    .footnote { font-size: 0.7rem; color: var(--text-sub); opacity: 0.7; line-height: 1.7; max-width: 340px; margin: 0 auto; }
+
+    .avoir-promo { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--border-color); max-width: 380px; margin-left: auto; margin-right: auto; }
+    .avoir-card {
+        display: block; text-decoration: none; position: relative; overflow: hidden;
+        border-radius: 16px; padding: 14px 16px; text-align: left;
+        background: linear-gradient(135deg, #2a1526 0%, #1a1020 55%, #141018 100%);
+        border: 1px solid rgba(255, 74, 122, 0.35);
+        box-shadow: 0 4px 18px rgba(255, 74, 122, 0.10);
+        transition: transform 0.18s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .avoir-card:active { transform: scale(0.985); }
+    .avoir-card::after {
+        content: ""; position: absolute; top: 0; left: -60%; width: 45%; height: 100%;
+        background: linear-gradient(100deg, transparent, rgba(255,255,255,0.13), transparent);
+        animation: avoirSweep 3.4s ease-in-out infinite;
+    }
+    @keyframes avoirSweep { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+    .avoir-row { display: flex; align-items: center; gap: 12px; position: relative; z-index: 1; }
+    .avoir-thumb {
+        flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px;
+        display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+        background: linear-gradient(140deg, var(--primary-pink, #ff4a7a), #b8336a);
+        box-shadow: 0 2px 10px rgba(255, 74, 122, 0.35);
+    }
+    .avoir-body { flex: 1; min-width: 0; }
+    .avoir-eyebrow { font-size: 0.58rem; font-weight: 800; letter-spacing: 1.2px; color: var(--primary-pink, #ff4a7a); }
+    .avoir-title { font-size: 0.86rem; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.35; }
+    .avoir-sub { font-size: 0.66rem; color: var(--text-sub); margin-top: 3px; }
+    .avoir-go {
+        flex-shrink: 0; font-size: 0.68rem; font-weight: 800; color: #fff;
+        background: var(--primary-pink, #ff4a7a); border-radius: 999px; padding: 7px 13px; white-space: nowrap;
+        box-shadow: 0 2px 10px rgba(255, 74, 122, 0.4);
+    }
+    .avoir-ad-mark { position: absolute; top: 7px; right: 9px; z-index: 2; font-size: 0.52rem; color: rgba(255,255,255,0.45); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+    <header class="site-header">
+        <div class="logo"><span>💖</span> 그날의 남녀</div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <a href="app.html?start=trial" class="header-cta app-link" data-start="trial" data-i18n="header_cta">바로 시작 →</a>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="badges">
+            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n="badge_nosignup">회원가입 없음</span></span>
+            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n="badge_noserver">서버 저장 없음</span></span>
+            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n="badge_local">내 기기에만 기록</span></span>
+        </div>
+
+        <div class="venn-wrap">
+            <svg viewBox="0 0 240 176">
+                <circle class="circle-a" cx="98" cy="88" r="66" fill="#ff4a7a"/>
+                <circle class="circle-b" cx="142" cy="88" r="66" fill="#3b82f6"/>
+            </svg>
+            <span class="venn-tag-a" data-i18n="tag_me">나</span>
+            <span class="venn-tag-b" data-i18n="tag_partner">파트너</span>
+            <div class="venn-score">
+                <div class="venn-num">87<span class="venn-suffix" data-i18n="venn_suffix">점</span></div>
+                <div class="venn-caption" data-i18n="venn_caption">우리 커플 케미</div>
+            </div>
+        </div>
+
+        <p class="eyebrow" data-i18n="eyebrow">30초 커플 케미 테스트</p>
+        <h1><span data-i18n="title_line1">우리 커플은</span><br><span class="hl" data-i18n="title_line2">얼마나 잘 맞을까?</span></h1>
+        <p class="sub" data-i18n="sub">생리주기부터 데이트, 컨디션까지 — 우리 둘의 리듬을 기록하는 커플 웰니스 서비스</p>
+
+        <a href="app.html?start=trial" class="cta-primary app-link" data-start="trial" data-i18n="cta_primary">❤️ 지금 30초 테스트 시작하기</a>
+        <p class="cta-note" data-i18n="cta_note">가입도, 로그인도 필요 없어요</p>
+    </div>
+
+    <p class="section-title" data-i18n="section_title">이런 걸 할 수 있어요</p>
+    <div class="features">
+        <a href="app.html?start=compat" class="feature-card pink app-link" data-start="compat">
+            <span class="feature-icon">❤️</span>
+            <div class="feature-title" data-i18n="feat1_title">커플 궁합 테스트</div>
+            <div class="feature-desc" data-i18n="feat1_desc">MBTI·혈액형·별자리를 조합해 우리 커플만의 케미 점수를 확인해보세요.</div>
+        </a>
+        <a href="app.html?start=trial" class="feature-card purple app-link" data-start="trial">
+            <span class="feature-icon">🔥</span>
+            <div class="feature-title" data-i18n="feat2_title">우리 커플 관계 리포트</div>
+            <div class="feature-desc" data-i18n="feat2_desc">함께한 날, 컨디션, 만족도까지 — 우리 둘의 패턴을 한눈에 확인해보세요.</div>
+        </a>
+        <a href="app.html?start=trial" class="feature-card blue app-link" data-start="trial">
+            <span class="feature-icon">🌙</span>
+            <div class="feature-title" data-i18n="feat3_title">생리주기 관리</div>
+            <div class="feature-desc" data-i18n="feat3_desc">다가오는 주기를 예측하고, 서로의 컨디션을 미리 배려할 수 있어요.</div>
+        </a>
+    </div>
+
+    <div class="trust">
+        <div class="trust-title" data-i18n="trust_title">🔐 왜 안전한가요</div>
+        <ul class="trust-list">
+            <li data-i18n="trust1">회원가입 없이 바로 사용할 수 있어요.</li>
+            <li data-i18n="trust2">관계 기록은 이 기기(브라우저)에만 남고, 서비스 개선용 익명 클릭 통계는 선택 동의로 수집됩니다.</li>
+            <li data-i18n="trust3">의학적 진단을 대체하지 않는 참고용 웰니스 서비스입니다.</li>
+        </ul>
+    </div>
+
+    <footer>
+        <a href="app.html?start=compat" class="footer-cta app-link" data-start="compat" data-i18n="footer_cta">❤️ 우리 커플 케미 확인하기</a>
+        <p class="footnote" data-i18n="footnote">관계 기록은 이 기기(브라우저)에만 남고, 서비스 개선용 익명 클릭 통계는 선택 동의로만 수집됩니다.<br>본 서비스는 의학적 진단·치료를 대체하지 않는 참고용 서비스입니다.</p>
+
+        <div class="avoir-promo">
+            <a class="avoir-card" href="https://avoir24.com/" target="_blank" rel="noopener sponsored">
+                <span class="avoir-ad-mark">AD</span>
+                <span class="avoir-row">
+                    <span class="avoir-thumb">👗</span>
+                    <span class="avoir-body">
+                        <span class="avoir-eyebrow">AVOIR</span>
+                        <span class="avoir-title" data-i18n="avoir_catchphrase">매일이 새로운 설렘</span>
+                        <span class="avoir-sub" data-i18n="avoir_sub">오늘의 기분에 어울리는 옷 한 벌</span>
+                    </span>
+                    <span class="avoir-go" data-i18n="avoir_cta_btn">구경하기 →</span>
+                </span>
+            </a>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    const LANDING_I18N = {
+        header_cta: { ko: "바로 시작 →", en: "Start Now →" },
+        badge_nosignup: { ko: "회원가입 없음", en: "No sign-up" },
+        badge_noserver: { ko: "기기 로컬 저장", en: "Local-only storage" },
+        badge_local: { ko: "이 기기에만 기록", en: "Stored on this device only" },
+        tag_me: { ko: "나", en: "Me" },
+        tag_partner: { ko: "파트너", en: "Partner" },
+        venn_suffix: { ko: "점", en: "" },
+        venn_caption: { ko: "우리 커플 케미", en: "Our Chemistry" },
+        eyebrow: { ko: "30초 커플 케미 테스트", en: "30-Second Couple Chemistry Test" },
+        title_line1: { ko: "우리 커플은", en: "How well do" },
+        title_line2: { ko: "얼마나 잘 맞을까?", en: "you two really match?" },
+        sub: { ko: "생리주기부터 데이트, 컨디션까지 — 우리 둘의 리듬을 기록하는 커플 웰니스 서비스", en: "From cycles to dates to condition — a couple's wellness service that tracks your rhythm together." },
+        cta_primary: { ko: "❤️ 지금 30초 테스트 시작하기", en: "❤️ Start the 30-Second Test" },
+        cta_note: { ko: "가입도, 로그인도 필요 없어요", en: "No sign-up, no login needed" },
+        section_title: { ko: "이런 걸 할 수 있어요", en: "What you can do" },
+        feat1_title: { ko: "커플 궁합 테스트", en: "Couple Chemistry Test" },
+        feat1_desc: { ko: "MBTI·혈액형·별자리를 조합해 우리 커플만의 케미 점수를 확인해보세요.", en: "Combine MBTI, blood type, and zodiac sign to see your couple's unique chemistry score." },
+        feat2_title: { ko: "우리 커플 관계 리포트", en: "Our Relationship Report" },
+        feat2_desc: { ko: "함께한 날, 컨디션, 만족도까지 — 우리 둘의 패턴을 한눈에 확인해보세요.", en: "Days together, condition, satisfaction — see your patterns at a glance." },
+        feat3_title: { ko: "생리주기 관리", en: "Cycle Tracking" },
+        feat3_desc: { ko: "다가오는 주기를 예측하고, 서로의 컨디션을 미리 배려할 수 있어요.", en: "Predict upcoming cycles and look out for each other ahead of time." },
+        trust_title: { ko: "🔐 왜 안전한가요", en: "🔐 Why it's safe" },
+        trust1: { ko: "회원가입 없이 바로 사용할 수 있어요.", en: "No sign-up needed — start right away." },
+        trust2: { ko: "입력한 정보는 외부 서버로 전송되지 않고, 이 기기(브라우저)에만 저장됩니다.", en: "Your data is never sent to a server — it's stored only on this device (browser)." },
+        trust3: { ko: "의학적 진단을 대체하지 않는 참고용 웰니스 서비스입니다.", en: "A reference wellness service, not a substitute for medical diagnosis." },
+        footer_cta: { ko: "❤️ 우리 커플 케미 확인하기", en: "❤️ Check Our Couple Chemistry" },
+        footnote: { ko: "기록은 이 기기에만 저장됩니다.<br>본 서비스는 의학적 진단·치료를 대체하지 않는 참고용 서비스입니다.", en: "Your records are stored only on this device.<br>This service is for reference only and does not replace medical diagnosis or treatment." },
+        avoir_catchphrase: { ko: "매일이 새로운 설렘", en: "Every day, a new thrill" },
+        avoir_sub: { ko: "오늘의 기분에 어울리는 옷 한 벌", en: "Find the look that matches today's mood" },
+        avoir_cta_btn: { ko: "구경하기 →", en: "Shop now →" }
+    };
+
+    const LANDING_LANG_KEY = "geunal_landing_lang";
+    let landingLang = "ko";
+    try {
+        const saved = localStorage.getItem(LANDING_LANG_KEY);
+        landingLang = "ko";
+    } catch (e) { /* no-op */ }
+
+    function applyLandingTranslations() {
+        document.documentElement.lang = landingLang;
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+            const key = el.getAttribute("data-i18n");
+            if (LANDING_I18N[key]) el.innerHTML = LANDING_I18N[key][landingLang];
+        });
+        document.querySelectorAll(".app-link").forEach(function (a) {
+            const start = a.getAttribute("data-start") || "trial";
+            a.href = "app.html?start=" + start;
+        });
+    }
+
+    function toggleLangLanding() {
+        landingLang = "ko";
+        try { localStorage.setItem(LANDING_LANG_KEY, landingLang); } catch (e) { /* no-op */ }
+        applyLandingTranslations();
+    }
+
+    applyLandingTranslations();
+</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

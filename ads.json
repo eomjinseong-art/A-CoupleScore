@@ -1,0 +1,221 @@
+{
+  "_comment": "이 파일은 구글 시트를 못 읽을 때만 쓰이는 백업입니다. 평소엔 시트가 우선 적용됩니다.",
+  "disclosure": "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+  "sheetCsvUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRvqXfp0s_WVcJwh4DeI1tvg6hir3Deh-bS2Z0WF90_vPd264Ptsb08zp1sxIfkLehlk_bXA0K8jk5g/pub?gid=0&single=true&output=csv",
+  "gift_items": [
+    {
+      "order": 1,
+      "name": {
+        "ko": "비타민",
+        "en": "비타민"
+      },
+      "hook": {
+        "ko": "두 사람의 리듬을 함께 채우기",
+        "en": "두 사람의 리듬을 함께 채우기"
+      },
+      "desc": {
+        "ko": "골든 타임을 위한 컨디션 준비",
+        "en": "골든 타임을 위한 컨디션 준비"
+      },
+      "url": "https://link.coupang.com/a/fY1mYqm6jk"
+    },
+    {
+      "order": 2,
+      "name": {
+        "ko": "초콜릿",
+        "en": "초콜릿"
+      },
+      "hook": {
+        "ko": "말보다 빠른 화해의 방법",
+        "en": "말보다 빠른 화해의 방법"
+      },
+      "desc": {
+        "ko": "일단 달콤함이 들어가면 대화가 쉬워집니다.",
+        "en": "일단 달콤함이 들어가면 대화가 쉬워집니다."
+      },
+      "url": "https://link.coupang.com/a/fY1v0zbUsK"
+    }
+  ],
+  "supplement_male": [
+    {
+      "order": 1,
+      "name": {
+        "ko": "아르기닌",
+        "en": "아르기닌"
+      },
+      "hook": {
+        "ko": "30대 이후, 관리하는 사람만 아는 차이",
+        "en": "30대 이후, 관리하는 사람만 아는 차이"
+      },
+      "desc": {
+        "ko": "활력 관리의 기본, 남성들이 가장 먼저 챙기는 성분",
+        "en": "활력 관리의 기본, 남성들이 가장 먼저 챙기는 성분"
+      },
+      "url": "https://link.coupang.com/a/fY0sMxNABw"
+    },
+    {
+      "order": 2,
+      "name": {
+        "ko": "마사지건",
+        "en": "마사지건"
+      },
+      "hook": {
+        "ko": "컨디션이 떨어지는 진짜 이유, 뭉친 근육입니다",
+        "en": "컨디션이 떨어지는 진짜 이유, 뭉친 근육입니다"
+      },
+      "desc": {
+        "ko": "하루 10분, 뻐근한 어깨와 허리를 직접 관리",
+        "en": "하루 10분, 뻐근한 어깨와 허리를 직접 관리"
+      },
+      "url": "https://link.coupang.com/a/fY0yxxvfae"
+    },
+    {
+      "order": 3,
+      "name": {
+        "ko": "스킨케어",
+        "en": "스킨케어"
+      },
+      "hook": {
+        "ko": "그녀가 먼저 알아보는 변화",
+        "en": "그녀가 먼저 알아보는 변화"
+      },
+      "desc": {
+        "ko": "관리하는 남자의 첫인상은 다릅니다",
+        "en": "관리하는 남자의 첫인상은 다릅니다"
+      },
+      "url": "https://link.coupang.com/a/fY0EcNxvJ6"
+    },
+    {
+      "order": 4,
+      "name": {
+        "ko": "마카",
+        "en": "마카"
+      },
+      "hook": {
+        "ko": "활력 나이 25세, 괜히 나온 숫자가 아닙니다",
+        "en": "활력 나이 25세, 괜히 나온 숫자가 아닙니다"
+      },
+      "desc": {
+        "ko": "페루산 마카, 남성 활력 관리의 스테디셀러",
+        "en": "페루산 마카, 남성 활력 관리의 스테디셀러"
+      },
+      "url": "https://link.coupang.com/a/fY0JXf155g"
+    },
+    {
+      "order": 5,
+      "name": {
+        "ko": "헬스보충제",
+        "en": "헬스보충제"
+      },
+      "hook": {
+        "ko": "스태미나 티어를 올리고 싶다면",
+        "en": "스태미나 티어를 올리고 싶다면"
+      },
+      "desc": {
+        "ko": "운동은 먹는것까지가 운동",
+        "en": "운동은 먹는것까지가 운동"
+      },
+      "url": "https://link.coupang.com/a/fY0N9SDuBU"
+    }
+  ],
+  "supplement_female": [
+    {
+      "order": 1,
+      "name": {
+        "ko": "배란테스트기",
+        "en": "배란테스트기"
+      },
+      "hook": {
+        "ko": "내 주기를 더 정확하게 알고 싶다면",
+        "en": "내 주기를 더 정확하게 알고 싶다면"
+      },
+      "desc": {
+        "ko": "기록에 데이터를 더하면 예측이 선명해집니다",
+        "en": "기록에 데이터를 더하면 예측이 선명해집니다"
+      },
+      "url": "https://link.coupang.com/a/fY0RaW2Wnk"
+    },
+    {
+      "order": 2,
+      "name": {
+        "ko": "유산균",
+        "en": "유산균"
+      },
+      "hook": {
+        "ko": "그 시기, 컨디션 관리의 시작",
+        "en": "그 시기, 컨디션 관리의 시작"
+      },
+      "desc": {
+        "ko": "여성 밸런스 관리를 위한 데일리 루틴",
+        "en": "여성 밸런스 관리를 위한 데일리 루틴"
+      },
+      "url": "https://link.coupang.com/a/fY0UoMuS5c"
+    },
+    {
+      "order": 3,
+      "name": {
+        "ko": "헤어드라이어",
+        "en": "헤어드라이어"
+      },
+      "hook": {
+        "ko": "기분 전환이 필요한 날",
+        "en": "기분 전환이 필요한 날"
+      },
+      "desc": {
+        "ko": "머리를 말리는 시간이 짧아지면 하루가 편해집니다",
+        "en": "머리를 말리는 시간이 짧아지면 하루가 편해집니다"
+      },
+      "url": "https://link.coupang.com/a/fY0WTl5Djw"
+    },
+    {
+      "order": 4,
+      "name": {
+        "ko": "생리대",
+        "en": "생리대"
+      },
+      "hook": {
+        "ko": "그날, 편안함은 타협하지 않기",
+        "en": "그날, 편안함은 타협하지 않기"
+      },
+      "desc": {
+        "ko": "민감한 날을 위한 순한 선택",
+        "en": "민감한 날을 위한 순한 선택"
+      },
+      "url": "https://link.coupang.com/a/fY0YHUaGjs"
+    },
+    {
+      "order": 5,
+      "name": {
+        "ko": "고데기",
+        "en": "고데기"
+      },
+      "hook": {
+        "ko": "오늘은 나를 위해 조금 더",
+        "en": "오늘은 나를 위해 조금 더"
+      },
+      "desc": {
+        "ko": "기분이 달라지면 컨디션도 달라집니다",
+        "en": "기분이 달라지면 컨디션도 달라집니다"
+      },
+      "url": "https://link.coupang.com/a/fY03UnQise"
+    }
+  ],
+  "bottom_items": [
+    {
+      "order": 1,
+      "name": {
+        "ko": "부부관계 수업",
+        "en": "The Couple Relationship Class"
+      },
+      "hook": {
+        "ko": "관계를 이해하면 싸움이 줄어듭니다",
+        "en": "관계를 이해하면 싸움이 줄어듭니다"
+      },
+      "desc": {
+        "ko": "서로의 리듬을 배우는 시간",
+        "en": "서로의 리듬을 배우는 시간"
+      },
+      "url": "https://link.coupang.com/a/fY1ebYOZyK"
+    }
+  ]
+}

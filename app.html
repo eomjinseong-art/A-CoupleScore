@@ -1180,13 +1180,6 @@
             </span>
         </a>
 
-        <!-- 🧠 케어 카드 (성별에 따라 대상 전환) -->
-        <div class="card card-accent" style="background: #1d1720;">
-            <h3 style="font-size: 0.9rem; margin-bottom: 8px; color: var(--primary-pink);" id="care-card-title">🧠 맞춤형 여성 케어 카드</h3>
-            <p style="font-size: 0.8rem; line-height: 1.4; margin-bottom: 12px;" id="care-card-prescription">파트너 정보를 등록하시면 맞춤 지침서가 생성됩니다.</p>
-
-        </div>
-
         <!-- 🎁 배려 선물 추천 (제휴 마케팅) — 항목은 ads.json 의 gift_items 에서 불러옴 -->
         <div class="card" id="gift-recommendation-card" style="border-color: var(--gold); display: none;">
             <h3 style="font-size: 0.9rem; margin-bottom: 8px; color: var(--gold);"><span data-i18n="gift_title">🎁 배려 선물 추천</span> <span id="gift-dday-label" style="font-size: 0.78rem;"></span></h3>
@@ -2924,7 +2917,6 @@
         renderGiftRecommendation();
         renderFCycleChart();
         renderCycleCuration();
-        renderCareCard();
         renderCompatCard();
         renderAvoirPromo();
     }
@@ -4253,49 +4245,6 @@
     }
 
     // ─────────────────────────────────────────────────────────────────
-    //  🧠 케어 카드: 남성 유저 → 여성 케어 / 여성 유저 → 남성 케어
-    // ─────────────────────────────────────────────────────────────────
-    function renderCareCard() {
-        const titleEl = document.getElementById("care-card-title");
-        const bodyEl = document.getElementById("care-card-prescription");
-        if (!titleEl) return;
-        const isEn = (currentLang === "en");
-
-        const partner = (activePartnerIndex !== -1) ? linkedPartners[activePartnerIndex] : null;
-        if (!partner) {
-            titleEl.innerText = isEn ? "🧠 Personalized Care Card" : "🧠 맞춤형 케어 카드";
-            bodyEl.innerText = isEn ? "Add a partner to generate personalized tips." : "파트너 정보를 등록하시면 맞춤 지침서가 생성됩니다.";
-            return;
-        }
-        const partnerGender = partner.partnerGender || (("age" in partner) ? "M" : "F");
-
-        if (partnerGender === "M") {
-            titleEl.innerText = isEn ? "🧠 Partner Care Card" : "🧠 맞춤형 남성 케어 카드";
-            const logs = partner.dailyLogs || [];
-            if (logs.length === 0) {
-                bodyEl.innerText = isEn ? "No logs yet. Add a log to get personalized care tips." : "아직 파트너의 로그 데이터가 없어요. 로그를 기록하면 맞춤 케어 팁이 제공됩니다.";
-            } else {
-                const last = logs[0];
-                if (last.ehs <= 1 || last.ams <= 1) {
-                    bodyEl.innerText = isEn ? "Condition may be low right now. Offer comfort and rest rather than pushing activities." : "컨디션이 저하되어 있을 수 있는 시기예요. 무리한 요구보다는 편안한 분위기와 휴식을 배려해주세요.";
-                } else if (last.ehs >= 3 && last.ams >= 3) {
-                    bodyEl.innerText = isEn ? "Condition and energy look great. A good time to plan something active together." : "컨디션과 활력이 좋은 시기예요. 함께하는 활동을 늘려보기 좋은 타이밍입니다.";
-                } else {
-                    bodyEl.innerText = isEn ? "Condition looks generally steady right now." : "전반적으로 안정적인 컨디션을 유지하고 있는 시기입니다.";
-                }
-            }
-        } else {
-            titleEl.innerText = isEn ? "🧠 Partner Care Card" : "🧠 맞춤형 여성 케어 카드";
-            if (!partner.isLmpKnown || !partner.calculatedData) {
-                bodyEl.innerText = isEn ? "Add your partner's cycle to generate personalized tips." : "파트너의 생리 주기를 등록하시면 맞춤 지침서가 생성됩니다.";
-            } else {
-                const cycleCtx = partner.calculatedData;
-                bodyEl.innerText = getPhaseText(cycleCtx.phaseKey, "femaleSub");
-            }
-        }
-    }
-
-    // ─────────────────────────────────────────────────────────────────
     //  🧩 모듈 네임스페이스 (확장성 대비)
     //  실제 프로덕션에서는 이 3개 모듈을 별도 파일/번들로 분리하고,
     //  Auth는 실제 로그인 API, Payment는 PortOne 등 PG SDK,
@@ -4549,7 +4498,6 @@
         applyDateInputLocale();
         applyStaticTranslations();
         applyGenderAdaptiveUI();
-        renderCareCard();
         renderCompatCard();
         renderGoldenTime();
         if (document.getElementById("view-daily").style.display === "block") renderDailyLogView();

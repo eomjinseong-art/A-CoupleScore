@@ -533,6 +533,24 @@
             position: absolute; top: 7px; right: 9px; z-index: 2;
             font-size: 0.52rem; color: rgba(255,255,255,0.45); letter-spacing: 0.4px;
         }
+        .market-promo.avoir-card {
+            background: linear-gradient(135deg, #1a1830 0%, #161225 55%, #121018 100%);
+            border-color: rgba(139, 92, 246, 0.45);
+        }
+        .market-promo .avoir-thumb { background: linear-gradient(140deg, #8b5cf6, #ff4a7a); }
+        .market-promo .avoir-eyebrow { color: #c4b5fd; text-transform: none; letter-spacing: 0.3px; }
+        .market-promo .avoir-go { background: #8b5cf6; box-shadow: 0 2px 10px rgba(139, 92, 246, 0.4); }
+        .market-promo.is-compact { margin: 8px 12px 10px; padding: 10px 12px; }
+        .market-promo.is-compact .avoir-sub { display: none; }
+        .market-promo.is-compact .avoir-thumb { width: 34px; height: 34px; font-size: 1.05rem; }
+        .sumsum-promo.avoir-card {
+            background: linear-gradient(135deg, #1f1810 0%, #1a140c 55%, #14100c 100%);
+            border-color: rgba(245, 158, 11, 0.4);
+            margin-top: 16px;
+        }
+        .sumsum-promo .avoir-thumb { background: linear-gradient(140deg, #f59e0b, #d97706); box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3); }
+        .sumsum-promo .avoir-eyebrow { color: #fcd34d; text-transform: none; }
+        .sumsum-promo .avoir-go { background: #d97706; box-shadow: 0 2px 10px rgba(217, 119, 6, 0.35); }
 
         /* ── 등급 안내 (레벨 로드맵) ── */
         #tier-badge-card { cursor: pointer; }
@@ -591,6 +609,18 @@
         <span class="vc-dot"></span>
         <span id="visitor-count-text"><span class="vc-num" id="visitor-count-num">-</span><span id="visitor-count-unit">명이 함께 확인했어요</span></span>
     </div>
+    <a id="market-promo-top" class="avoir-card market-promo is-compact" href="https://a-couple-score-cpang.vercel.app/" target="_blank" rel="noopener">
+        <span class="avoir-ad-mark" data-i18n="avoir_ad_mark">AD</span>
+        <span class="avoir-row">
+            <span class="avoir-thumb">🛍️</span>
+            <span class="avoir-body">
+                <span class="avoir-eyebrow" data-i18n="market_eyebrow">그날의 남녀 마켓</span>
+                <span class="avoir-title" data-i18n="market_title">케미 확인했으면, 그날의 선물도</span>
+                <span class="avoir-sub" data-i18n="market_sub">커플템·데이트 아이템 보러가기</span>
+            </span>
+            <span class="avoir-go" data-i18n="market_cta">보러가기 →</span>
+        </span>
+    </a>
 
     <!-- ── VIEW 1: LEGAL & ONBOARDING ── -->
     <div id="view-onboarding" class="view-panel active">
@@ -647,6 +677,18 @@
             </div>
             <button type="button" class="btn btn-primary" style="width: 100%;" onclick="runOnboardingTrial()" data-i18n="trial_btn">🔮 지금 바로 보기</button>
             <div id="trial-result-box" style="display: none; margin-top: 14px;"></div>
+            <a id="market-promo-trial" class="avoir-card market-promo" href="https://a-couple-score-cpang.vercel.app/" target="_blank" rel="noopener" style="display: none; margin-top: 12px;">
+                <span class="avoir-ad-mark" data-i18n="avoir_ad_mark">AD</span>
+                <span class="avoir-row">
+                    <span class="avoir-thumb">🛍️</span>
+                    <span class="avoir-body">
+                        <span class="avoir-eyebrow" data-i18n="market_eyebrow">그날의 남녀 마켓</span>
+                        <span class="avoir-title" data-i18n="market_title">케미 확인했으면, 그날의 선물도</span>
+                        <span class="avoir-sub" data-i18n="market_sub">커플템·데이트 아이템 보러가기</span>
+                    </span>
+                    <span class="avoir-go" data-i18n="market_cta">보러가기 →</span>
+                </span>
+            </a>
         </div>
 
         <p style="font-size: 0.8rem; color: var(--text-sub); text-align: center; margin: 4px 0 12px;" data-i18n="ob_continue_notice">계속 이용하시려면 아래 약관에 동의해 주세요.</p>
@@ -785,6 +827,18 @@
                 </div>
                 <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 12px;" onclick="runCompatibilityPreview()">💫 두 사람의 케미 지수 계산하기</button>
                 <div id="compat-preview-result" style="display: none; margin-top: 12px;"></div>
+                <a id="market-promo-compat" class="avoir-card market-promo" href="https://a-couple-score-cpang.vercel.app/" target="_blank" rel="noopener" style="display: none; margin-top: 12px;">
+                    <span class="avoir-ad-mark" data-i18n="avoir_ad_mark">AD</span>
+                    <span class="avoir-row">
+                        <span class="avoir-thumb">🛍️</span>
+                        <span class="avoir-body">
+                            <span class="avoir-eyebrow" data-i18n="market_eyebrow">그날의 남녀 마켓</span>
+                            <span class="avoir-title" data-i18n="market_title">케미 확인했으면, 그날의 선물도</span>
+                            <span class="avoir-sub" data-i18n="market_sub">커플템·데이트 아이템 보러가기</span>
+                        </span>
+                        <span class="avoir-go" data-i18n="market_cta">보러가기 →</span>
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -1113,6 +1167,18 @@
             <span class="term-explain" style="margin-bottom: 12px;" data-i18n="compat_explain">MBTI·혈액형·별자리를 조합한 재미 요소용 궁합 점수이며, 과학적으로 검증된 지표가 아닙니다.</span>
             <div id="compat-card-result"></div>
         </div>
+        <a id="market-promo-dash" class="avoir-card market-promo" href="https://a-couple-score-cpang.vercel.app/" target="_blank" rel="noopener" style="display: none;">
+            <span class="avoir-ad-mark" data-i18n="avoir_ad_mark">AD</span>
+            <span class="avoir-row">
+                <span class="avoir-thumb">🛍️</span>
+                <span class="avoir-body">
+                    <span class="avoir-eyebrow" data-i18n="market_eyebrow">그날의 남녀 마켓</span>
+                    <span class="avoir-title" data-i18n="market_title">케미 확인했으면, 그날의 선물도</span>
+                    <span class="avoir-sub" data-i18n="market_sub">커플템·데이트 아이템 보러가기</span>
+                </span>
+                <span class="avoir-go" data-i18n="market_cta">보러가기 →</span>
+            </span>
+        </a>
 
         <!-- 🧠 케어 카드 (성별에 따라 대상 전환) -->
         <div class="card card-accent" style="background: #1d1720;">
@@ -1461,6 +1527,19 @@
                 <p style="font-size: 0.8rem; color: var(--text-sub);" data-i18n="my_placeholder">신체 정보를 입력하면 맞춤 리포트가 자동으로 생성됩니다.</p>
             </div>
         </div>
+
+        <a id="sumsum-promo" class="avoir-card sumsum-promo" href="https://b-cat-cpang.vercel.app/" target="_blank" rel="noopener">
+            <span class="avoir-ad-mark" data-i18n="avoir_ad_mark">AD</span>
+            <span class="avoir-row">
+                <span class="avoir-thumb">🐱</span>
+                <span class="avoir-body">
+                    <span class="avoir-eyebrow" data-i18n="sumsum_eyebrow">숨숨마을</span>
+                    <span class="avoir-title" data-i18n="sumsum_title">우리 집 고양이용품은 숨숨마을</span>
+                    <span class="avoir-sub" data-i18n="sumsum_sub">사료·모래·간식 추천 보러가기</span>
+                </span>
+                <span class="avoir-go" data-i18n="sumsum_cta">보러가기 →</span>
+            </span>
+        </a>
 
         <button id="btn-reset-data" type="button" class="btn" style="background: rgba(255, 74, 122, 0.05); border: 1px solid rgba(255, 74, 122, 0.2); color: var(--primary-pink); font-size: 0.82rem; padding: 12px; border-radius: 12px; font-weight: 700; margin-top: 20px; width: 100%;" onclick="requestDataReset()" data-i18n="btn_reset_data">🗑️ 데이터 초기화</button>
     </div>
@@ -2506,6 +2585,8 @@
             '</div>' +
             '<div style="display: flex; gap: 8px; margin-top: 10px;">' + bestDayBoxHtml + tierBoxHtml + '</div>' +
             ctaHtml;
+        const trialPromo = document.getElementById("market-promo-trial");
+        if (trialPromo) trialPromo.style.display = "block";
     }
 
     function scrollToOnboardingConsent() {
@@ -2540,6 +2621,8 @@
         const box = document.getElementById("compat-preview-result");
         box.style.display = "block";
         box.innerHTML = '<div class="golden-time-box is-match"><p class="golden-time-title">두 사람의 케미 지수</p><p class="golden-time-main">' + result.finalScore + '점</p><p class="golden-time-sub">' + rows.join(" · ") + '</p>' + missing + '</div>';
+        const compatPromo = document.getElementById("market-promo-compat");
+        if (compatPromo) compatPromo.style.display = "block";
     }
 
     function highlightMissingField(el, msg) {
@@ -4086,16 +4169,26 @@
     function renderCompatCard() {
         const card = document.getElementById("compat-card");
         const container = document.getElementById("compat-card-result");
+        const dashPromo = document.getElementById("market-promo-dash");
         if (!card) return;
         const partner = (activePartnerIndex !== -1) ? linkedPartners[activePartnerIndex] : null;
         const isEn = (currentLang === "en");
-        if (!partner) { card.style.display = "none"; return; }
+        if (!partner) {
+            card.style.display = "none";
+            if (dashPromo) dashPromo.style.display = "none";
+            return;
+        }
 
         const selfTraits = { mbti: currentUser.mbti, bloodType: currentUser.bloodType, zodiac: currentUser.zodiac };
         const partnerTraits = { mbti: partner.mbti, bloodType: partner.bloodType, zodiac: partner.zodiac };
         const anyTraitPresent = selfTraits.mbti || selfTraits.bloodType || selfTraits.zodiac || partnerTraits.mbti || partnerTraits.bloodType || partnerTraits.zodiac;
-        if (!anyTraitPresent) { card.style.display = "none"; return; }
+        if (!anyTraitPresent) {
+            card.style.display = "none";
+            if (dashPromo) dashPromo.style.display = "none";
+            return;
+        }
         card.style.display = "block";
+        if (dashPromo) dashPromo.style.display = "block";
 
         const compat = computeCompatibilityScore(selfTraits, partnerTraits);
 
@@ -4381,6 +4474,14 @@
         avoir_sub: { ko: "오늘의 기분에 어울리는 옷 한 벌", en: "Find the look that matches today's mood" },
         avoir_ad_mark: { ko: "AD", en: "AD" },
         avoir_cta_btn: { ko: "구경하기 →", en: "Shop now →" },
+        market_eyebrow: { ko: "그날의 남녀 마켓", en: "Geunal Market" },
+        market_title: { ko: "케미 확인했으면, 그날의 선물도", en: "Checked your chemistry? Shop the day's gifts" },
+        market_sub: { ko: "커플템·데이트 아이템 보러가기", en: "Couple items and date picks" },
+        market_cta: { ko: "보러가기 →", en: "Visit →" },
+        sumsum_eyebrow: { ko: "숨숨마을", en: "Soomsoom Village" },
+        sumsum_title: { ko: "우리 집 고양이용품은 숨숨마을", en: "Cat goods live in Soomsoom Village" },
+        sumsum_sub: { ko: "사료·모래·간식 추천 보러가기", en: "Food, litter, and treats" },
+        sumsum_cta: { ko: "보러가기 →", en: "Visit →" },
         compat_explain: { ko: "MBTI·혈액형·별자리를 조합한 재미 요소용 궁합 점수이며, 과학적으로 검증된 지표가 아닙니다.", en: "A fun compatibility score combining MBTI, blood type, and zodiac sign. Not a scientifically validated indicator." },
         compat_privacy_title: { ko: "🔐 안내", en: "🔐 Notice" },
         compat_privacy_body: { ko: "입력하신 모든 정보(생리 시작일, MBTI, 혈액형, 별자리 등)는 익명으로 처리되어 본인의 스마트폰 또는 PC에만 저장됩니다. 외부 서버로 전송되거나 수집·유출되지 않습니다.", en: "All information you enter (period date, MBTI, blood type, zodiac sign, etc.) is pseudonymized and stored only on your own phone or PC. It is never collected, transmitted, or leaked outside." },

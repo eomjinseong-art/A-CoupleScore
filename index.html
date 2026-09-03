@@ -141,6 +141,16 @@
         box-shadow: 0 2px 10px rgba(255, 74, 122, 0.4);
     }
     .avoir-ad-mark { position: absolute; top: 7px; right: 9px; z-index: 2; font-size: 0.52rem; color: rgba(255,255,255,0.45); }
+    .market-promo { margin: 18px auto 0; max-width: 380px; }
+    .market-promo .avoir-card {
+        background: linear-gradient(135deg, #1a1830 0%, #161225 55%, #121018 100%);
+        border-color: rgba(139, 92, 246, 0.45);
+    }
+    .market-promo .avoir-thumb {
+        background: linear-gradient(140deg, #8b5cf6, #ff4a7a);
+    }
+    .market-promo .avoir-eyebrow { color: #c4b5fd; }
+    .market-promo .avoir-go { background: #8b5cf6; box-shadow: 0 2px 10px rgba(139, 92, 246, 0.4); }
 </style>
 </head>
 <body>
@@ -180,6 +190,20 @@
 
         <a href="app.html?start=trial" class="cta-primary app-link" data-start="trial" data-i18n="cta_primary">❤️ 지금 30초 테스트 시작하기</a>
         <p class="cta-note" data-i18n="cta_note">가입도, 로그인도 필요 없어요</p>
+        <div class="market-promo">
+            <a class="avoir-card" href="https://a-couple-score-cpang.vercel.app/" target="_blank" rel="noopener">
+                <span class="avoir-ad-mark">AD</span>
+                <span class="avoir-row">
+                    <span class="avoir-thumb">🛍️</span>
+                    <span class="avoir-body">
+                        <span class="avoir-eyebrow" data-i18n="market_eyebrow">그날의 남녀 마켓</span>
+                        <span class="avoir-title" data-i18n="market_title">케미 확인했으면, 그날의 선물도</span>
+                        <span class="avoir-sub" data-i18n="market_sub">커플템·데이트 아이템 보러가기</span>
+                    </span>
+                    <span class="avoir-go" data-i18n="market_cta">보러가기 →</span>
+                </span>
+            </a>
+        </div>
     </div>
 
     <p class="section-title" data-i18n="section_title">이런 걸 할 수 있어요</p>
@@ -263,7 +287,11 @@
         footnote: { ko: "기록은 이 기기에만 저장됩니다.<br>본 서비스는 의학적 진단·치료를 대체하지 않는 참고용 서비스입니다.", en: "Your records are stored only on this device.<br>This service is for reference only and does not replace medical diagnosis or treatment." },
         avoir_catchphrase: { ko: "매일이 새로운 설렘", en: "Every day, a new thrill" },
         avoir_sub: { ko: "오늘의 기분에 어울리는 옷 한 벌", en: "Find the look that matches today's mood" },
-        avoir_cta_btn: { ko: "구경하기 →", en: "Shop now →" }
+        avoir_cta_btn: { ko: "구경하기 →", en: "Shop now →" },
+        market_eyebrow: { ko: "그날의 남녀 마켓", en: "Geunal Market" },
+        market_title: { ko: "케미 확인했으면, 그날의 선물도", en: "Checked your chemistry? Shop the day's gifts" },
+        market_sub: { ko: "커플템·데이트 아이템 보러가기", en: "Couple items and date picks" },
+        market_cta: { ko: "보러가기 →", en: "Visit →" }
     };
 
     const LANDING_LANG_KEY = "geunal_landing_lang";

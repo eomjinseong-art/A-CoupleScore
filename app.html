@@ -588,7 +588,7 @@
             background: var(--primary-pink); border-radius: 999px; padding: 3px 8px; letter-spacing: 0.3px;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -1228,7 +1228,7 @@
         <button id="btn-delete-partner" type="button" class="btn" style="background: rgba(255, 74, 122, 0.05); border: 1px solid rgba(255, 74, 122, 0.2); color: var(--primary-pink); font-size: 0.82rem; padding: 12px; border-radius: 12px; font-weight: 700; margin-top: 20px; width: 100%; display: none;" onclick="deleteActivePartner()" data-i18n="btn_delete_partner">⚠️ 파트너 관계 해제</button>
 
         <!-- 캡처용 숨김 카드 템플릿 (html2canvas 대상) -->
-        <div id="share-card-canvas-target" style="position: fixed; top: -9999px; left: -9999px; width: 380px; padding: 40px 28px 28px; background: linear-gradient(160deg, #1a1025 0%, #2d1b3d 55%, #3a1a2e 100%); border-radius: 28px; font-family: 'Malgun Gothic', sans-serif; color: #fff; box-sizing: border-box; overflow: hidden;">
+        <div id="share-card-canvas-target" style="position: absolute; top: -9999px; left: -9999px; width: 380px; padding: 40px 28px 28px; background: linear-gradient(160deg, #1a1025 0%, #2d1b3d 55%, #3a1a2e 100%); border-radius: 28px; font-family: 'Malgun Gothic', sans-serif; color: #fff; box-sizing: border-box;">
             <div style="position: absolute; top: -60px; right: -60px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(255,74,122,0.35), transparent 70%); filter: blur(2px);"></div>
             <div style="position: absolute; bottom: -50px; left: -50px; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(139,92,246,0.3), transparent 70%); filter: blur(2px);"></div>
             <div style="position: relative;">
@@ -3514,7 +3514,8 @@
             return;
         }
 
-        html2canvas(document.getElementById("share-card-canvas-target"), { backgroundColor: null, scale: 2, useCORS: true, logging: false }).then(canvas => {
+        const target = document.getElementById("share-card-canvas-target");
+        html2canvas(target, { backgroundColor: "#1a1025", scale: 2, useCORS: true, allowTaint: true, logging: false, scrollX: 0, scrollY: 0, windowWidth: target.offsetWidth, windowHeight: target.offsetHeight }).then(canvas => {
             const saveImage = function (href) {
                 if (btn) btn.disabled = false;
                 if (!href) { showToast("⚠️ 이미지 저장에 실패했습니다."); return; }

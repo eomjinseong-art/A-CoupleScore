@@ -110,42 +110,25 @@
             align-items: center;
             gap: 6px;
         }
-        /* ── 누적 방문자 스트립 ── */
-        .visitor-counter {
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+        .visit-count {
             display: none;
             align-items: center;
-            justify-content: center;
-            gap: 7px;
-            font-size: 0.7rem;
+            gap: 4px;
+            font-size: 0.72rem;
             font-weight: 600;
-            padding: 7px 12px;
-            background: linear-gradient(90deg, rgba(236,72,153,0.10), rgba(139,92,246,0.10));
-            border-bottom: 1px solid var(--border-color);
-            color: #f9a8d4;
-            letter-spacing: -0.2px;
-        }
-        .visitor-counter.is-visible { display: flex; }
-        .visitor-counter .vc-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: #22c55e;
-            box-shadow: 0 0 7px rgba(34,197,94,0.9);
-            animation: vcPulse 2.2s ease-in-out infinite;
-            flex: none;
-        }
-        @keyframes vcPulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.75); }
-        }
-        .visitor-counter .vc-num {
+            color: var(--text-sub);
+            opacity: 0.72;
             font-variant-numeric: tabular-nums;
-            font-weight: 800;
-            font-size: 0.78rem;
-            color: #fbcfe8;
-            margin-right: 1px;
+            white-space: nowrap;
+            user-select: none;
         }
-        @media (prefers-reduced-motion: reduce) {
-            .visitor-counter .vc-dot { animation: none; }
-        }
+        .visit-count.is-visible { display: inline-flex; }
 
         .view-panel {
             flex: 1;
@@ -600,8 +583,11 @@
 <div class="mobile-frame">
     <!-- App Header -->
     <div class="app-header">
-        <div class="app-logo" onclick="switchTab('dashboard')" style="cursor: pointer;" title="메인으로">
-            <span>💖</span> <span data-i18n="appName">그날의 남녀</span>
+        <div class="header-brand">
+            <div class="app-logo" onclick="switchTab('dashboard')" style="cursor: pointer;" title="메인으로">
+                <span>💖</span> <span data-i18n="appName">그날의 남녀</span>
+            </div>
+            <span id="visit-count" class="visit-count" aria-hidden="true">👁 <span id="visit-count-num"></span></span>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
             <div id="connection-status" style="font-size: 0.7rem; background: #374151; padding: 4px 8px; border-radius: 20px; color: #9ca3af; font-weight: 600;">
@@ -611,11 +597,6 @@
     </div>
     <!-- 헤더 fixed 높이 보상 여백 -->
     <div style="height: 60px; flex-shrink: 0;"></div>
-    <!-- 누적 방문자 스트립 (사회적 증거) -->
-    <div id="visitor-counter" class="visitor-counter">
-        <span class="vc-dot"></span>
-        <span id="visitor-count-text"><span class="vc-num" id="visitor-count-num">-</span><span id="visitor-count-unit">명이 함께 확인했어요</span></span>
-    </div>
     <a id="market-promo-top" class="avoir-card market-promo is-compact" href="https://a-couple-score-cpang.vercel.app/" target="_blank" rel="noopener">
         <span class="avoir-ad-mark" data-i18n="avoir_ad_mark">AD</span>
         <span class="avoir-row">
@@ -1665,64 +1646,6 @@
     //     }
     // ─────────────────────────────────────────────────────────────────
     const GOOGLE_SHEETS_LOG_URL = "https://script.google.com/macros/s/AKfycbzT5vRHBfApI15oyx7ToOMEY84QfxG9v4uLUHHrgj3jhiov0FDbNHZSONt1ZEMitNO3/exec"; // 🔗 여기에 배포된 웹 앱 URL을 붙여넣으면 로깅이 활성화됩니다 (비어있으면 아무 동작 안 함)
-
-    // ─────────────────────────────────────────────────────────────────
-    //  누적 방문자 카운터
-    //  - 무료 카운터 서비스(abacus) 사용. 가입/API키 불필요.
-    //  - 같은 기기에서는 하루 1회만 증가(중복 카운트 방지), 이후엔 조회만.
-    //  - 실패해도 배지를 숨기고 앱 동작에는 영향 없음.
-    // ─────────────────────────────────────────────────────────────────
-    const VISITOR_COUNTER_NS = "heartsync-app";   // 네임스페이스(바꾸면 카운트 초기화됨)
-    const VISITOR_COUNTER_KEY = "visits";
-    const VISITOR_COUNTER_BASE = "https://abacus.jasoncameron.dev";
-    const VISITOR_VISITED_STORAGE_KEY = "heartsync_visit_marked_v1";
-
-    function renderVisitorCount(value) {
-        const box = document.getElementById("visitor-counter");
-        const numEl = document.getElementById("visitor-count-num");
-        const unitEl = document.getElementById("visitor-count-unit");
-        if (!box || !numEl) return;
-        const n = parseInt(value, 10);
-        if (!isFinite(n) || n <= 0) { box.classList.remove("is-visible"); return; }
-        const isEn = (typeof currentLang !== "undefined" && currentLang === "en");
-        if (unitEl) unitEl.innerText = isEn ? " people have checked their rhythm" : "명이 함께 확인했어요";
-        // 0 -> n 롤링 애니메이션 (짧게)
-        const target = n;
-        const start = Math.max(0, target - Math.min(target, 40));
-        let cur = start;
-        numEl.innerText = cur.toLocaleString();
-        box.classList.add("is-visible");
-        if (target - start > 0) {
-            const step = Math.max(1, Math.ceil((target - start) / 20));
-            const timer = setInterval(function () {
-                cur += step;
-                if (cur >= target) { cur = target; clearInterval(timer); }
-                numEl.innerText = cur.toLocaleString();
-            }, 24);
-        }
-    }
-
-    function initVisitorCounter() {
-        let alreadyCountedToday = false;
-        try {
-            const today = new Date().toISOString().slice(0, 10);
-            alreadyCountedToday = (localStorage.getItem(VISITOR_VISITED_STORAGE_KEY) === today);
-            if (!alreadyCountedToday) localStorage.setItem(VISITOR_VISITED_STORAGE_KEY, today);
-        } catch (_) { /* 저장 불가 환경에서는 매번 증가 */ }
-
-        const path = alreadyCountedToday ? "/get/" : "/hit/";
-        const url = VISITOR_COUNTER_BASE + path + VISITOR_COUNTER_NS + "/" + VISITOR_COUNTER_KEY;
-
-        fetch(url, { cache: "no-store" })
-            .then(function (res) { return res.ok ? res.json() : null; })
-            .then(function (data) {
-                if (data && typeof data.value !== "undefined") {
-                    window.__visitorCount = data.value;
-                    renderVisitorCount(data.value);
-                }
-            })
-            .catch(function () { /* 실패 시 배지 미표시 */ });
-    }
 
     function logEventToSheet(eventName, extra) {
         if (!GOOGLE_SHEETS_LOG_URL) return;
@@ -4509,7 +4432,6 @@
         renderGoldenTime();
         if (document.getElementById("view-daily").style.display === "block") renderDailyLogView();
         updateMultiSyncTier();
-        if (typeof window.__visitorCount !== "undefined") { try { renderVisitorCount(window.__visitorCount); } catch (e) {} }
         saveAppState();
     }
 
@@ -4671,9 +4593,8 @@
 
     // 광고/제휴 데이터(ads.json)는 별도로 비동기 로드 — 실패해도 앱 나머지 기능엔 영향 없음
     loadAdData();
-    // 누적 방문자 카운터 — 실패해도 배지만 숨겨지고 앱 동작엔 영향 없음
-    try { initVisitorCounter(); } catch (e) { /* no-op */ }
 </script>
+    <script src="visitor-counter.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

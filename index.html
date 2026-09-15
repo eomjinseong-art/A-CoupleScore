@@ -87,6 +87,20 @@
         padding-top: max(16px, env(safe-area-inset-top));
     }
     .logo { font-size: 1.15rem; font-weight: 800; background: linear-gradient(45deg, var(--primary-pink), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 6px; }
+    .header-brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .visit-count {
+        display: none;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--text-sub);
+        opacity: 0.72;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        user-select: none;
+    }
+    .visit-count.is-visible { display: inline-flex; }
     .header-cta { font-size: 0.85rem; font-weight: 700; color: var(--text-main); background: #1c222e; border: 1px solid var(--border-color); border-radius: 12px; padding: 10px 16px; text-decoration: none; }
 
     /* ── hero ── */
@@ -199,7 +213,10 @@
 <div class="wrap">
 
     <header class="site-header">
-        <div class="logo"><span>💖</span> 그날의 남녀</div>
+        <div class="header-brand">
+            <div class="logo"><span>💖</span> 그날의 남녀</div>
+            <span id="visit-count" class="visit-count" aria-hidden="true">👁 <span id="visit-count-num"></span></span>
+        </div>
         <div style="display: flex; align-items: center; gap: 8px;">
             <a href="app.html?start=trial" class="header-cta app-link" data-start="trial" data-i18n="header_cta">바로 시작 →</a>
         </div>
@@ -362,6 +379,7 @@
 
     applyLandingTranslations();
 </script>
+    <script src="visitor-counter.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

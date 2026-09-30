@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://couple-score.vercel.app/</loc>
-  </url>
+  <url><loc>https://couple-score.vercel.app/</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://couple-score.vercel.app/guide/couple-test</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://couple-score.vercel.app/guide/mbti-couple</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://couple-score.vercel.app/guide/blood-type</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://couple-score.vercel.app/guide/period-calculator</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://couple-score.vercel.app/privacy</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://couple-score.vercel.app/terms</loc><lastmod>2026-09-30</lastmod></url>
 </urlset>

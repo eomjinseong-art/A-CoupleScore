@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="noindex">
     <meta name="description" content="그날의 남녀는 우리 커플의 케미와 주기·컨디션을 기록하는 로컬 기반 웰니스 서비스입니다.">
     <meta name="theme-color" content="#0d0f12">
     <link rel="manifest" href="manifest.json">
@@ -438,7 +439,7 @@
 
         /* ── 하단 법적 고지 바 & 모달 ── */
         .legal-footer-bar { position: absolute; bottom: 64px; left: 0; right: 0; background: #0f1219; border-top: 1px solid var(--border-color); padding: 5px 12px; font-size: 0.6rem; color: var(--text-sub); display: flex; justify-content: center; gap: 10px; z-index: 9; }
-        .legal-footer-bar span { cursor: pointer; text-decoration: underline; }
+        .legal-footer-bar span, .legal-footer-bar a { cursor: pointer; text-decoration: underline; color: inherit; }
         .modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: flex-end; justify-content: center; z-index: 100; }
         .modal-overlay.show { display: flex; }
         .modal-sheet { background: var(--card-bg); border-radius: 20px 20px 0 0; padding: 20px; width: 100%; max-height: 75%; overflow-y: auto; border: 1px solid var(--border-color); border-bottom: none; }
@@ -597,18 +598,6 @@
     </div>
     <!-- 헤더 fixed 높이 보상 여백 -->
     <div style="height: 60px; flex-shrink: 0;"></div>
-    <a id="market-promo-top" class="avoir-card market-promo is-compact" href="https://a-couple-score-cpang.vercel.app/" target="_blank" rel="noopener">
-        <span class="avoir-ad-mark" data-i18n="avoir_ad_mark">AD</span>
-        <span class="avoir-row">
-            <span class="avoir-thumb">🛍️</span>
-            <span class="avoir-body">
-                <span class="avoir-eyebrow" data-i18n="market_eyebrow">그날의 남녀 마켓</span>
-                <span class="avoir-title" data-i18n="market_title">케미 확인했으면, 그날의 선물도</span>
-                <span class="avoir-sub" data-i18n="market_sub">커플템·데이트 아이템 보러가기</span>
-            </span>
-            <span class="avoir-go" data-i18n="market_cta">보러가기 →</span>
-        </span>
-    </a>
 
     <!-- ── VIEW 1: LEGAL & ONBOARDING ── -->
     <div id="view-onboarding" class="view-panel active">
@@ -677,68 +666,6 @@
                     <span class="avoir-go" data-i18n="market_cta">보러가기 →</span>
                 </span>
             </a>
-        </div>
-
-        <p style="font-size: 0.8rem; color: var(--text-sub); text-align: center; margin: 4px 0 12px;" data-i18n="ob_continue_notice">계속 이용하시려면 아래 약관에 동의해 주세요.</p>
-
-        <div class="card card-accent" id="onboarding-consent-card">
-            <h3 style="font-size: 0.95rem; margin-bottom: 8px; color: var(--primary-pink);" data-i18n="ob_legal_title">⚖️ 법적 고지 및 개인정보 처리</h3>
-            <p class="term-explain" style="margin-bottom: 12px; line-height: 1.5;">
-                <span data-i18n="ob_legal_summary">이 앱은 의학적 진단을 대체하지 않는 참고용 웰니스 서비스이며, 생리 주기·관계 기록 등 민감정보는 가명 처리되어 안전하게 저장됩니다.</span>
-                <span onclick="showLegalModal('terms')" style="text-decoration: underline; cursor: pointer; color: var(--primary-pink); font-weight: 700;" data-i18n="ob_legal_view_full">전문 보기</span>
-            </p>
-
-            <div class="consent-checkbox-wrapper">
-                <input type="checkbox" id="chk-consent-medical">
-                <label for="chk-consent-medical" class="consent-label" data-i18n="ob_chk_medical">[필수] 의학적 진단·치료 목적으로 사용하지 않음에 동의합니다.</label>
-            </div>
-
-            <div class="consent-checkbox-wrapper">
-                <input type="checkbox" id="chk-consent-privacy">
-                <label for="chk-consent-privacy" class="consent-label" data-i18n="ob_chk_privacy">[필수] 가명 정보 처리 방침에 동의합니다.</label>
-            </div>
-
-            <div class="consent-checkbox-wrapper">
-                <input type="checkbox" id="chk-consent-sensitive">
-                <label for="chk-consent-sensitive" class="consent-label" data-i18n="ob_chk_sensitive">[필수] 건강 관련 민감정보 수집·이용에 동의합니다.</label>
-            </div>
-
-            <div class="consent-checkbox-wrapper" style="background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.28);">
-                <input type="checkbox" id="chk-consent-analytics">
-                <label for="chk-consent-analytics" class="consent-label" data-i18n="ob_chk_analytics">[선택] 서비스 개선을 위해 익명 클릭 통계 수집에 동의합니다.</label>
-            </div>
-        </div>
-
-        <div class="form-group" id="nickname-card" style="border: 1.5px solid var(--border-color); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
-            <label data-i18n="ob_nickname_label">닉네임 설정</label>
-            <input type="text" id="reg-nickname" class="input-control" placeholder="예: 웰니스러버" data-i18n-ph="ob_nickname_ph">
-        </div>
-
-        <div class="form-group">
-            <label data-i18n="ob_gender_label">성별 선택</label>
-            <div style="display: flex; gap: 10px;">
-                <button type="button" class="btn btn-secondary" id="btn-gender-m" style="flex: 1; border-color: var(--primary-blue);" onclick="selectGender('M')" data-i18n="ob_gender_m">남성</button>
-                <button type="button" class="btn btn-secondary" id="btn-gender-f" style="flex: 1; border-color: var(--primary-pink);" onclick="selectGender('F')" data-i18n="ob_gender_f">여성</button>
-            </div>
-        </div>
-
-        <!-- 🩺 신체 정보는 '마이' 탭에서 입력하도록 온보딩에서 제거 -->
-        <div class="card" id="onboard-body-card" style="border-color: var(--primary-blue); margin-top: 4px; display: none;">
-            <h3 style="font-size: 0.85rem; margin-bottom: 8px; color: var(--primary-blue);" data-i18n="ob_body_title">🩺 신체 정보 (선택, '마이'에서 사용)</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                <div class="form-group">
-                    <label data-i18n="ob_height_label">키 (cm)</label>
-                    <input type="number" id="onboard-body-height" class="input-control" min="100" max="250" placeholder="175" oninput="markBodyStatsEdited()">
-                </div>
-                <div class="form-group">
-                    <label data-i18n="ob_weight_label">몸무게 (kg)</label>
-                    <input type="number" id="onboard-body-weight" class="input-control" min="30" max="200" placeholder="70" oninput="markBodyStatsEdited()">
-                </div>
-            </div>
-            <div class="form-group" style="margin-bottom: 0;">
-                <label data-i18n="ob_age_label">만 나이</label>
-                <input type="number" id="onboard-body-age" class="input-control" min="14" max="100" placeholder="32" oninput="markBodyStatsEdited()">
-            </div>
         </div>
 
         <div class="card" id="onboard-compat-card" style="border-color: var(--accent-purple); margin-top: 4px;">
@@ -815,28 +742,85 @@
                 </div>
                 <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 12px;" onclick="runCompatibilityPreview()">💫 두 사람의 케미 지수 계산하기</button>
                 <div id="compat-preview-result" style="display: none; margin-top: 12px;"></div>
-                <a id="market-promo-compat" class="avoir-card market-promo" href="https://a-couple-score-cpang.vercel.app/" target="_blank" rel="noopener" style="display: none; margin-top: 12px;">
-                    <span class="avoir-ad-mark" data-i18n="avoir_ad_mark">AD</span>
-                    <span class="avoir-row">
-                        <span class="avoir-thumb">🛍️</span>
-                        <span class="avoir-body">
-                            <span class="avoir-eyebrow" data-i18n="market_eyebrow">그날의 남녀 마켓</span>
-                            <span class="avoir-title" data-i18n="market_title">케미 확인했으면, 그날의 선물도</span>
-                            <span class="avoir-sub" data-i18n="market_sub">커플템·데이트 아이템 보러가기</span>
-                        </span>
-                        <span class="avoir-go" data-i18n="market_cta">보러가기 →</span>
-                    </span>
-                </a>
+            </div>
+        </div>
+
+        <!-- 💾 결과 확인 후 저장 단계로 진입 (동의·프로필은 이때만 받음) -->
+        <div class="card" id="save-continue-card" style="text-align: center; border-color: var(--primary-pink);">
+            <p style="font-size: 0.9rem; font-weight: 800; margin-bottom: 6px;" data-i18n="save_cta_title">결과가 마음에 드셨나요?</p>
+            <p style="font-size: 0.76rem; color: var(--text-sub); line-height: 1.5; margin-bottom: 12px;" data-i18n="save_cta_desc">기록·대시보드를 계속 쓰려면 동의와 간단한 프로필만 입력하면 돼요. 모든 기록은 이 기기(브라우저)에만 저장됩니다.</p>
+            <button type="button" id="btn-open-save" class="btn btn-primary" style="width: 100%;" onclick="openSaveSection(true)" data-i18n="save_cta_btn">💾 저장하고 계속 쓰기</button>
+        </div>
+
+        <div id="onboarding-save-section" style="display: none;">
+        <div class="card card-accent" id="onboarding-consent-card">
+            <h3 style="font-size: 0.95rem; margin-bottom: 8px; color: var(--primary-pink);" data-i18n="ob_legal_title">⚖️ 법적 고지 및 개인정보 처리</h3>
+            <p class="term-explain" style="margin-bottom: 12px; line-height: 1.5;">
+                <span data-i18n="ob_legal_summary">이 앱은 의학적 진단을 대체하지 않는 참고용 웰니스 서비스이며, 생리 주기·관계 기록 등 민감정보는 외부 서버로 전송되지 않고 이 기기(브라우저)에만 저장됩니다.</span>
+                <span onclick="showLegalModal('terms')" style="text-decoration: underline; cursor: pointer; color: var(--primary-pink); font-weight: 700;" data-i18n="ob_legal_view_full">전문 보기</span>
+            </p>
+
+            <div class="consent-checkbox-wrapper">
+                <input type="checkbox" id="chk-consent-medical">
+                <label for="chk-consent-medical" class="consent-label" data-i18n="ob_chk_medical">[필수] 의학적 진단·치료 목적으로 사용하지 않음에 동의합니다.</label>
+            </div>
+
+            <div class="consent-checkbox-wrapper">
+                <input type="checkbox" id="chk-consent-privacy">
+                <label for="chk-consent-privacy" class="consent-label" data-i18n="ob_chk_privacy">[필수] 관계 기록은 이 기기(브라우저)에만 남는다는 안내를 확인했습니다.</label>
+            </div>
+
+            <div class="consent-checkbox-wrapper">
+                <input type="checkbox" id="chk-consent-sensitive">
+                <label for="chk-consent-sensitive" class="consent-label" data-i18n="ob_chk_sensitive">[필수] 건강 관련 민감정보 수집·이용에 동의합니다.</label>
+            </div>
+
+            <div class="consent-checkbox-wrapper" style="background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.28);">
+                <input type="checkbox" id="chk-consent-analytics">
+                <label for="chk-consent-analytics" class="consent-label" data-i18n="ob_chk_analytics">[선택] 서비스 개선을 위해 익명 클릭 통계 수집에 동의합니다.</label>
+            </div>
+        </div>
+
+        <div class="form-group" id="nickname-card" style="border: 1.5px solid var(--border-color); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
+            <label data-i18n="ob_nickname_label">닉네임 설정</label>
+            <input type="text" id="reg-nickname" class="input-control" placeholder="예: 웰니스러버" data-i18n-ph="ob_nickname_ph">
+        </div>
+
+        <div class="form-group">
+            <label data-i18n="ob_gender_label">성별 선택</label>
+            <div style="display: flex; gap: 10px;">
+                <button type="button" class="btn btn-secondary" id="btn-gender-m" style="flex: 1; border-color: var(--primary-blue);" onclick="selectGender('M')" data-i18n="ob_gender_m">남성</button>
+                <button type="button" class="btn btn-secondary" id="btn-gender-f" style="flex: 1; border-color: var(--primary-pink);" onclick="selectGender('F')" data-i18n="ob_gender_f">여성</button>
+            </div>
+        </div>
+
+        <!-- 🩺 신체 정보는 '마이' 탭에서 입력하도록 온보딩에서 제거 -->
+        <div class="card" id="onboard-body-card" style="border-color: var(--primary-blue); margin-top: 4px; display: none;">
+            <h3 style="font-size: 0.85rem; margin-bottom: 8px; color: var(--primary-blue);" data-i18n="ob_body_title">🩺 신체 정보 (선택, '마이'에서 사용)</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="form-group">
+                    <label data-i18n="ob_height_label">키 (cm)</label>
+                    <input type="number" id="onboard-body-height" class="input-control" min="100" max="250" placeholder="175" oninput="markBodyStatsEdited()">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="ob_weight_label">몸무게 (kg)</label>
+                    <input type="number" id="onboard-body-weight" class="input-control" min="30" max="200" placeholder="70" oninput="markBodyStatsEdited()">
+                </div>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label data-i18n="ob_age_label">만 나이</label>
+                <input type="number" id="onboard-body-age" class="input-control" min="14" max="100" placeholder="32" oninput="markBodyStatsEdited()">
             </div>
         </div>
 
         <button type="button" class="btn btn-primary" onclick="proceedToOnboarding()" data-i18n="ob_submit_btn">동의하고 시작하기</button>
+        </div>
     </div>
 
     <!-- ── VIEW 2: SYNC SETTING (파트너 등록 – 선택사항) ── -->
     <div id="view-sync" class="view-panel">
         <h2 id="sync-view-title">💜 파트너 등록 (선택)</h2>
-        <p class="subtitle" id="sync-view-subtitle">현재 거래를 나누는 연인의 정보를 입력하면 대시보드에서 맞춤 정보가 활성화됩니다. 혼자만 써도 괜찮습니다.</p>
+        <p class="subtitle" id="sync-view-subtitle">현재 만나고 있는 연인의 정보를 입력하면 대시보드에서 맞춤 정보가 활성화됩니다. 혼자만 써도 괜찮습니다.</p>
 
         <!-- ⚙️ 나의 생리주기 커스텀 설정 (여성 유저 전용, Step 0) -->
         <div class="card" id="self-cycle-section" style="border-color: var(--primary-pink); display: none;">
@@ -1155,25 +1139,13 @@
             <span class="term-explain" style="margin-bottom: 12px;" data-i18n="compat_explain">MBTI·혈액형·별자리를 조합한 재미 요소용 궁합 점수이며, 과학적으로 검증된 지표가 아닙니다.</span>
             <div id="compat-card-result"></div>
         </div>
-        <a id="market-promo-dash" class="avoir-card market-promo" href="https://a-couple-score-cpang.vercel.app/" target="_blank" rel="noopener" style="display: none;">
-            <span class="avoir-ad-mark" data-i18n="avoir_ad_mark">AD</span>
-            <span class="avoir-row">
-                <span class="avoir-thumb">🛍️</span>
-                <span class="avoir-body">
-                    <span class="avoir-eyebrow" data-i18n="market_eyebrow">그날의 남녀 마켓</span>
-                    <span class="avoir-title" data-i18n="market_title">케미 확인했으면, 그날의 선물도</span>
-                    <span class="avoir-sub" data-i18n="market_sub">커플템·데이트 아이템 보러가기</span>
-                </span>
-                <span class="avoir-go" data-i18n="market_cta">보러가기 →</span>
-            </span>
-        </a>
 
         <!-- 🎁 배려 선물 추천 (제휴 마케팅) — 항목은 ads.json 의 gift_items 에서 불러옴 -->
         <div class="card" id="gift-recommendation-card" style="border-color: var(--gold); display: none;">
             <h3 style="font-size: 0.9rem; margin-bottom: 8px; color: var(--gold);"><span data-i18n="gift_title">🎁 배려 선물 추천</span> <span id="gift-dday-label" style="font-size: 0.78rem;"></span></h3>
             <span class="term-explain" style="margin-bottom: 10px;" data-i18n="gift_explain">생리 예정일이 3일 이내로 다가왔습니다. 따뜻한 배려를 준비해보세요.</span>
             <div id="gift-list-container"></div>
-            <p style="font-size: 0.62rem; color: var(--text-sub); margin-top: 10px; line-height: 1.4;" data-i18n="coupang_disclosure">※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로 일정액의 수수료를 제공받을 수 있습니다.</p>
+            <p style="font-size: 0.62rem; color: var(--text-sub); margin-top: 10px; line-height: 1.4;" data-i18n="coupang_disclosure">※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
         </div>
 
         <!-- 🔮 골든타임 예측 -->
@@ -1246,7 +1218,7 @@
     <!-- ── VIEW 4: DAILY LOG ── -->
     <div id="view-daily" class="view-panel">
         <h2 data-i18n="log_title">📝 로그</h2>
-        <p class="subtitle" data-i18n="log_subtitle">모든 항목은 가명 처리되어 나만 볼 수 있습니다.</p>
+        <p class="subtitle" data-i18n="log_subtitle">모든 항목은 이 기기(브라우저)에만 저장되어 나만 볼 수 있습니다.</p>
         <p style="font-size: 0.6rem; color: var(--text-sub); margin: -8px 0 12px 0;" data-i18n="disclaimer_short">⚠️ 참고용 프로그램이며 의학적 진단·치료를 대체하지 않습니다.</p>
 
         <div style="font-size: 0.75rem; color: var(--primary-pink); font-weight: 700; margin-bottom: 6px; padding-left: 2px;" data-i18n="log_target_label">✏️ 기록 대상 선택</div>
@@ -1307,7 +1279,7 @@
             </button>
             <div id="accordion-vitality-content" style="display: none; padding-top: 12px;">
                 <h4 style="font-size: 0.85rem; margin-bottom: 8px; color: var(--gold);" id="daily-log-vitality-title-detail">남성 활력 지표</h4>
-                <span class="term-explain" style="margin-bottom: 12px;" data-i18n="log_vitality_explain">가명·수치화된 지표이며, 순화된 표현을 사용합니다.</span>
+                <span class="term-explain" style="margin-bottom: 12px;" data-i18n="log_vitality_explain">수치화된 참고 지표이며, 순화된 표현을 사용합니다.</span>
 
                 <div class="form-group">
                     <label id="daily-log-ehs-label-detail">① 에너지 강도</label>
@@ -1408,14 +1380,14 @@
             <p style="font-size: 0.78rem; color: var(--text-sub); font-weight: 700; margin-bottom: 8px;" data-i18n="supplement_title">🌿 참고할 만한 제품</p>
             <div id="supplement-list-container"></div>
             <p style="font-size: 0.62rem; color: var(--text-sub); margin-top: 10px; line-height: 1.4;" data-i18n="supplement_footnote">※ 위 제품은 의약품이 아닌 건강기능식품이며, 효과는 개인마다 다를 수 있습니다.</p>
-            <p style="font-size: 0.62rem; color: var(--text-sub); margin-top: 2px; line-height: 1.4;" data-i18n="coupang_disclosure">※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로 일정액의 수수료를 제공받을 수 있습니다.</p>
+            <p style="font-size: 0.62rem; color: var(--text-sub); margin-top: 2px; line-height: 1.4;" data-i18n="coupang_disclosure">※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
         </div>
 
         <!-- 하단 여백 광고 (시트 bottom 슬롯) -->
         <div class="card" id="bottom-ad-card" style="display: none;">
             <h3 style="font-size: 0.9rem; margin-bottom: 8px; color: var(--text-sub);" data-i18n="bottom_ad_title">📚 함께 보면 좋은 것</h3>
             <div id="bottom-ad-container"></div>
-            <p style="font-size: 0.62rem; color: var(--text-sub); margin-top: 10px; line-height: 1.4;" data-i18n="coupang_disclosure">※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로 일정액의 수수료를 제공받을 수 있습니다.</p>
+            <p style="font-size: 0.62rem; color: var(--text-sub); margin-top: 10px; line-height: 1.4;" data-i18n="coupang_disclosure">※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
         </div>
     </div>
 
@@ -1535,8 +1507,8 @@
 
     <!-- 하단 법적 고지 바 (구글 애드센스 승인 요건) -->
     <div class="legal-footer-bar">
-        <span onclick="showLegalModal('terms')" data-i18n="footer_terms">이용약관</span>
-        <span onclick="showLegalModal('privacy')" data-i18n="footer_privacy">개인정보처리방침</span>
+        <a href="/terms" target="_blank" rel="noopener" data-i18n="footer_terms">이용약관</a>
+        <a href="/privacy" target="_blank" rel="noopener" data-i18n="footer_privacy">개인정보처리방침</a>
         <span onclick="showLegalModal('disclaimer')" data-i18n="footer_disclaimer">면책조항</span>
     </div>
 
@@ -1575,7 +1547,7 @@
     <div class="modal-overlay" id="compat-privacy-modal-overlay" onclick="if(event.target===this) closeCompatPrivacyModal()">
         <div class="modal-sheet">
             <h3 data-i18n="compat_privacy_title">🔐 안내</h3>
-            <p style="font-size: 0.85rem; color: var(--text-main); margin-bottom: 14px; line-height: 1.6;" data-i18n="compat_privacy_body">입력하신 MBTI·혈액형·별자리 등 모든 정보는 익명으로 처리되어 본인의 스마트폰 또는 PC에만 저장됩니다. 외부 서버로 전송되거나 유출되지 않습니다.</p>
+            <p style="font-size: 0.85rem; color: var(--text-main); margin-bottom: 14px; line-height: 1.6;" data-i18n="compat_privacy_body">입력하신 생리 시작일·MBTI·혈액형·별자리 등은 이 기기(브라우저)에만 저장되며, 외부 서버로 전송되지 않습니다.</p>
             <div class="consent-checkbox-wrapper">
                 <input type="checkbox" id="chk-compat-privacy-ack">
                 <label for="chk-compat-privacy-ack" class="consent-label" data-i18n="compat_privacy_ack">확인했습니다.</label>
@@ -1649,6 +1621,8 @@
 
     function logEventToSheet(eventName, extra) {
         if (!GOOGLE_SHEETS_LOG_URL) return;
+        // [선택] 익명 클릭 통계에 동의한 사용자만 전송
+        if (typeof currentUser === "undefined" || !currentUser.analyticsConsent) return;
         try {
             fetch(GOOGLE_SHEETS_LOG_URL, {
                 method: "POST",
@@ -2466,7 +2440,8 @@
         trialLmpValue = val;
         const data = generateCalculatedCycle(val);
         trialResultData = { data: data, whoseLabel: trialWhose === "self" ? (isEn ? "Your" : "나의") : (isEn ? "Partner's" : "파트너의") };
-        trialUnlocked = false;
+        // 체험 결과는 동의 없이 바로 전체 공개 (동의·프로필은 '저장하고 계속 쓰기' 시점에만)
+        trialUnlocked = true;
         renderTrialResultBox();
     }
 
@@ -2495,8 +2470,8 @@
                 '<p style="font-size: 1.1rem; font-weight: 800;">' + bestDayVal + '</p></div>';
             tierBoxHtml = '<div style="flex: 1; background: #181c26; border: 1px dashed var(--border-color); border-radius: 10px; padding: 10px; text-align: center;">' +
                 '<p style="font-size: 0.66rem; color: var(--text-sub); margin-bottom: 4px;">🏅 ' + (isEn ? "My Tier" : "나의 등급") + '</p>' +
-                '<p style="font-size: 0.62rem; color: var(--text-sub); margin-top: 2px; line-height: 1.3;">' + (isEn ? "Unlocks after you sign up and add a few logs" : "가입 후 로그를 기록하면 표시돼요") + '</p></div>';
-            ctaHtml = '<button type="button" class="btn btn-primary" style="width: 100%; margin-top: 12px;" onclick="scrollToOnboardingConsent()">' + (isEn ? "Continue ↓" : "계속하기 ↓") + '</button>';
+                '<p style="font-size: 0.62rem; color: var(--text-sub); margin-top: 2px; line-height: 1.3;">' + (isEn ? "Shows up after you save and add a few logs" : "저장 후 로그를 기록하면 표시돼요") + '</p></div>';
+            ctaHtml = '<button type="button" class="btn btn-primary" style="width: 100%; margin-top: 12px;" onclick="openSaveSection(true)">' + (isEn ? "💾 Save & Continue" : "💾 저장하고 계속 쓰기") + '</button>';
         }
 
         box.innerHTML =
@@ -2508,14 +2483,30 @@
             '</div>' +
             '<div style="display: flex; gap: 8px; margin-top: 10px;">' + bestDayBoxHtml + tierBoxHtml + '</div>' +
             ctaHtml;
-        const trialPromo = document.getElementById("market-promo-trial");
-        if (trialPromo) trialPromo.style.display = "block";
+        showResultPromoAfter(box);
     }
 
-    function scrollToOnboardingConsent() {
-        const el = document.getElementById("onboarding-consent-card");
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    // 앱 내 '그날의 남녀 마켓' 광고는 1개만 두고, 가장 최근에 본 결과 바로 아래로 옮겨 표시
+    function showResultPromoAfter(resultEl) {
+        const promo = document.getElementById("market-promo-trial");
+        if (!promo || !resultEl) return;
+        resultEl.insertAdjacentElement("afterend", promo);
+        promo.style.display = "block";
     }
+
+    // 필수 동의 + 닉네임/성별 입력 영역은 '저장하고 계속 쓰기'를 눌렀을 때만 펼침
+    function openSaveSection(scroll) {
+        const section = document.getElementById("onboarding-save-section");
+        if (section) section.style.display = "block";
+        const cta = document.getElementById("save-continue-card");
+        if (cta) cta.style.display = "none";
+        if (scroll !== false) {
+            const el = document.getElementById("onboarding-consent-card");
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    }
+
+    function scrollToOnboardingConsent() { openSaveSection(true); }
 
     function runCompatibilityPreview() {
         const selfTraits = {
@@ -2544,8 +2535,7 @@
         const box = document.getElementById("compat-preview-result");
         box.style.display = "block";
         box.innerHTML = '<div class="golden-time-box is-match"><p class="golden-time-title">두 사람의 케미 지수</p><p class="golden-time-main">' + result.finalScore + '점</p><p class="golden-time-sub">' + rows.join(" · ") + '</p>' + missing + '</div>';
-        const compatPromo = document.getElementById("market-promo-compat");
-        if (compatPromo) compatPromo.style.display = "block";
+        showResultPromoAfter(box);
     }
 
     function highlightMissingField(el, msg) {
@@ -2559,6 +2549,7 @@
 
     function proceedToOnboarding() {
         const isEn = (currentLang === "en");
+        openSaveSection(false);
         const nickname = document.getElementById("reg-nickname").value.trim();
         const medChecked = document.getElementById("chk-consent-medical").checked;
         const privChecked = document.getElementById("chk-consent-privacy").checked;
@@ -2614,7 +2605,7 @@
     }
 
     function switchTab(viewId) {
-        if (!currentUser.consented && viewId !== "onboarding") { showToast((currentLang === "en") ? "⚠️ Legal consent is required." : "⚠️ 법적 동의가 필요합니다."); return; }
+        if (!currentUser.consented && viewId !== "onboarding") { openSaveSection(true); showToast((currentLang === "en") ? "⚠️ Please agree and save first." : "⚠️ 기록을 쓰려면 먼저 동의하고 저장해 주세요."); return; }
         document.querySelectorAll(".view-panel").forEach(p => p.style.display = "none");
         const target = document.getElementById("view-" + viewId);
         if (target) target.style.display = "block";
@@ -3876,7 +3867,7 @@
             body: {
                 ko: "제1조(목적) 본 약관은 '그날의 남녀' 서비스(이하 '서비스') 이용에 관한 조건을 규정합니다.<br><br>" +
                     "제2조(서비스의 성격) 본 서비스는 통계적 참고 정보를 제공하는 웰니스 콘텐츠이며, 의료 행위를 수행하지 않습니다.<br><br>" +
-                    "제3조(이용자의 의무) 이용자는 타인의 정보를 무단으로 입력하거나 서비스를 부정한 목적으로 사용할 수 없습니다.",
+                    "제3조(이용자의 의무) 이용자는 타인의 정보를 무단으로 입력하거나 서비스를 부정한 목적으로 사용할 수 없습니다.<br><br>전체 내용: couple-score.vercel.app/terms",
                 en: "Article 1 (Purpose) These terms govern the use of the 'Heart-Sync' service ('the Service').<br><br>" +
                     "Article 2 (Nature of Service) The Service provides statistical reference wellness content and does not perform medical acts.<br><br>" +
                     "Article 3 (User Obligations) Users may not enter another person's information without authorization or use the Service for improper purposes."
@@ -3885,11 +3876,11 @@
         privacy: {
             title: { ko: "개인정보처리방침", en: "Privacy Policy" },
             body: {
-                ko: "1. 수집 항목: 가명 닉네임, 생리 주기·기분·만족도 등 이용자가 직접 입력한 관계 기록, 선택적으로 수집되는 익명 클릭 통계.<br><br>" +
-                    "2. 저장 방식: 관계 기록은 이 기기(브라우저)에만 남습니다. 외부 서버에 실시간 전송되거나 저장되지 않습니다.<br><br>" +
+                ko: "1. 처리 항목: 닉네임(실명 불필요), 생리 주기·기분·만족도 등 이용자가 직접 입력한 관계 기록(이 기기에만 저장), 선택 동의 시 전송되는 익명 이벤트 통계.<br><br>" +
+                    "2. 저장 방식: 닉네임·생리 주기·궁합 정보·관계 기록은 이 기기(브라우저)의 로컬 저장소에만 저장되며, 운영자 서버로 전송되지 않습니다.<br><br>" +
                     "3. 민감정보 처리: 생리 주기, 관계 로그 등 개인정보 및 건강 관련 정보는 이용자의 동의 범위 안에서만 저장되며, 식별 가능한 실명·연락처는 저장하지 않습니다.<br><br>" +
-                    "4. 통계 수집: 서비스 개선을 위한 익명 클릭 통계는 선택 동의 항목으로 분리하며, 필수 동의 항목과 별도로 처리됩니다.<br><br>" +
-                    "5. 삭제 및 관리: 브라우저 저장을 삭제하거나 관계를 해제하면 저장된 기록은 삭제됩니다. 본 서비스는 의료 진단을 대신하지 않으며 참고용입니다.",
+                    "4. 통계 수집: [선택] 동의한 경우에만 가입·파트너 등록·기록 저장·공유 등 이벤트 발생 사실(이벤트 종류, 시각, 성별, 언어)을 익명으로 전송합니다. 입력한 기록 내용은 전송하지 않습니다. 이 밖에 Vercel Analytics(익명 방문 통계)와 방문자 수 카운터를 사용합니다.<br><br>" +
+                    "5. 삭제 및 관리: 브라우저 저장을 삭제하거나 '마이 → 데이터 초기화'를 누르면 저장된 기록은 삭제됩니다. 본 서비스는 의료 진단을 대신하지 않으며 참고용입니다.<br><br>전체 내용: couple-score.vercel.app/privacy",
                 en: "1. Data Collected: pseudonymous nickname, user-entered relationship records such as cycle, mood, and satisfaction, and optional anonymous click statistics used for service improvement.<br><br>" +
                     "2. Storage: Relationship records remain only on this device (browser) and are not uploaded to an external server for real-time storage.<br><br>" +
                     "3. Sensitive Data: Cycle data and relationship logs are stored only within the agreed scope and we do not collect real names, contact information, or other identifying data.<br><br>" +
@@ -4260,11 +4251,11 @@
         log_recent_title: { ko: "📚 최근 기록", en: "📚 Recent Logs" },
         log_sleep_explain: { ko: "5시간 미만 수면 시 자동으로 \"수면 부족\"으로 분류됩니다.", en: "Under 5 hours is automatically flagged as \"sleep deprived.\"" },
         log_sleep_label: { ko: "전날 수면 시간 (시간)", en: "Sleep Last Night (hrs)" },
-        log_subtitle: { ko: "모든 항목은 가명 처리되어 나만 볼 수 있습니다.", en: "All entries are pseudonymized and visible only to you." },
+        log_subtitle: { ko: "모든 항목은 이 기기(브라우저)에만 저장되어 나만 볼 수 있습니다.", en: "All entries are stored only on this device (browser) and visible only to you." },
         log_target_label: { ko: "✏️ 기록 대상 선택", en: "✏️ Select Log Target" },
         log_title: { ko: "📝 로그", en: "📝 Log" },
         log_variables_label: { ko: "🔋 활력 영향 변수", en: "🔋 Lifestyle Factors" },
-        log_vitality_explain: { ko: "가명·수치화된 지표이며, 순화된 표현을 사용합니다.", en: "Pseudonymized, numeric indicators using non-clinical wording." },
+        log_vitality_explain: { ko: "수치화된 참고 지표이며, 순화된 표현을 사용합니다.", en: "Numeric reference indicators using non-clinical wording." },
         matrix_title: { ko: "📊 활력 밸런스 매트릭스", en: "📊 Vitality Balance" },
         matrix_trend_label: { ko: "에너지 강도(EHS) 실시간 추이", en: "Energy Level (EHS) Trend" },
         my_activity_high: { ko: "활동적 (매일 고강도 활동)", en: "Active (daily intense exercise)" },
@@ -4294,11 +4285,14 @@
         ob_gender_m: { ko: "남성", en: "Male" },
         ob_height_label: { ko: "키 (cm)", en: "Height (cm)" },
         ob_legal_title: { ko: "⚖️ 법적 고지 및 개인정보 처리", en: "⚖️ Legal Notice & Privacy" },
-        ob_legal_summary: { ko: "이 앱은 의학적 진단을 대체하지 않는 참고용 웰니스 서비스이며, 생리 주기·관계 기록 등 민감정보는 가명 처리되어 안전하게 저장됩니다. ", en: "This app is a reference wellness service that does not replace medical diagnosis. Sensitive data such as cycle and activity logs is pseudonymized and stored securely. " },
+        ob_legal_summary: { ko: "이 앱은 의학적 진단을 대체하지 않는 참고용 웰니스 서비스이며, 생리 주기·관계 기록 등 민감정보는 외부 서버로 전송되지 않고 이 기기(브라우저)에만 저장됩니다. ", en: "This app is a reference wellness service that does not replace medical diagnosis. Sensitive data such as cycle and activity logs is not sent to a server and is stored only on this device (browser). " },
         ob_legal_view_full: { ko: "전문 보기", en: "View Full Text" },
         ob_nickname_label: { ko: "닉네임 설정", en: "Set Nickname" },
         ob_nickname_ph: { ko: "예: 웰니스러버", en: "e.g. WellnessLover" },
-        ob_submit_btn: { ko: "동의하고 시작하기", en: "Agree & Start" },
+        ob_submit_btn: { ko: "동의하고 저장하기", en: "Agree & Save" },
+        save_cta_title: { ko: "결과가 마음에 드셨나요?", en: "Like your result?" },
+        save_cta_desc: { ko: "기록·대시보드를 계속 쓰려면 동의와 간단한 프로필만 입력하면 돼요. 모든 기록은 이 기기(브라우저)에만 저장됩니다.", en: "To keep logs and use the dashboard, just agree and set a quick profile. Everything is stored on this device (browser) only." },
+        save_cta_btn: { ko: "💾 저장하고 계속 쓰기", en: "💾 Save & Continue" },
         ob_subtitle: { ko: "먼저 30초 체험으로 가볍게 확인해보세요.", en: "Start with a quick 30-second preview." },
         ob_continue_notice: { ko: "계속 이용하시려면 아래 약관에 동의해 주세요.", en: "Please agree to the terms below to continue." },
         ob_title: { ko: "반갑습니다!", en: "Welcome!" },
@@ -4322,7 +4316,7 @@
         recharge_title: { ko: "🧴 맞춤 컨디션 케어", en: "🧴 Personalized Condition Care" },
         supplement_footnote: { ko: "※ 위 제품은 의약품이 아닌 건강기능식품이며, 효과는 개인마다 다를 수 있습니다.", en: "※ These are dietary supplements, not medicine. Effects may vary by individual." },
         bottom_ad_title: { ko: "📚 함께 보면 좋은 것", en: "📚 Worth a look" },
-        coupang_disclosure: { ko: "※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로 일정액의 수수료를 제공받을 수 있습니다.", en: "※ This post may earn a commission through Coupang Partners." },
+        coupang_disclosure: { ko: "※ 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.", en: "※ This post may earn a commission through Coupang Partners." },
         partner_switcher_label: { ko: "⚡ 현재 활성 파트너 원터치 체인저", en: "⚡ One-Tap Active Partner Switcher" },
         supplement_title: { ko: "🌿 참고할 만한 건강기능식품", en: "🌿 Supplements to Consider" },
         sync_add_partner_btn: { ko: "➕ 파트너 추가", en: "➕ Add Partner" },
@@ -4364,7 +4358,7 @@
         sumsum_cta: { ko: "보러가기 →", en: "Visit →" },
         compat_explain: { ko: "MBTI·혈액형·별자리를 조합한 재미 요소용 궁합 점수이며, 과학적으로 검증된 지표가 아닙니다.", en: "A fun compatibility score combining MBTI, blood type, and zodiac sign. Not a scientifically validated indicator." },
         compat_privacy_title: { ko: "🔐 안내", en: "🔐 Notice" },
-        compat_privacy_body: { ko: "입력하신 모든 정보(생리 시작일, MBTI, 혈액형, 별자리 등)는 익명으로 처리되어 본인의 스마트폰 또는 PC에만 저장됩니다. 외부 서버로 전송되거나 수집·유출되지 않습니다.", en: "All information you enter (period date, MBTI, blood type, zodiac sign, etc.) is pseudonymized and stored only on your own phone or PC. It is never collected, transmitted, or leaked outside." },
+        compat_privacy_body: { ko: "입력하신 생리 시작일·MBTI·혈액형·별자리 등은 이 기기(브라우저)에만 저장되며, 외부 서버로 전송되지 않습니다.", en: "The period date, MBTI, blood type, zodiac sign, etc. you enter are stored only on this device (browser) and are not sent to a server." },
         compat_privacy_ack: { ko: "확인했습니다.", en: "I understand." },
         compat_privacy_confirm_btn: { ko: "🔓 자세히 보기", en: "🔓 View Details" },
         delete_partner_title: { ko: "⚠️ 파트너 관계 해제", en: "⚠️ Remove Partner" },

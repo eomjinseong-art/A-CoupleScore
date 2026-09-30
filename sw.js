@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gnm-cache-v3';
+const CACHE_NAME = 'gnm-cache-v4';
 const APP_SHELL = [
   './',
   './index.html',
@@ -30,6 +30,18 @@ self.addEventListener('fetch', (event) => {
 
   const requestUrl = new URL(event.request.url);
   if (requestUrl.origin !== self.location.origin) return;
+
+  // 페이지(HTML) 요청은 네트워크 우선: 배포된 새 버전이 바로 보이도록 하고, 오프라인일 때만 캐시 사용
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request).then((response) => {
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+        return response;
+      }).catch(() => caches.match(event.request).then((cached) => cached || caches.match('./index.html')))
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request).then((cached) => {

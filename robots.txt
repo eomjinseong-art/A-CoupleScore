@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Disallow: /app
-Disallow: /app.html
+
+# /app 은 개인 기록 화면이라 검색 노출하지 않음 (페이지 meta + X-Robots-Tag: noindex 로 처리)
 
 Sitemap: https://couple-score.vercel.app/sitemap.xml

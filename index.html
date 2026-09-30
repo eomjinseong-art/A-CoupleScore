@@ -163,6 +163,28 @@
     .footer-cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 36px; border-radius: 14px; font-size: 0.95rem; font-weight: 700; text-decoration: none; color: #fff; background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple)); margin-bottom: 20px; min-height: 52px; }
     .footnote { font-size: 0.75rem; color: var(--text-sub); opacity: 0.7; line-height: 1.7; max-width: 360px; margin: 0 auto; }
 
+    /* ── content sections (SEO) ── */
+    .info { margin-bottom: 44px; }
+    .info h2 { font-size: 1.15rem; font-weight: 800; margin-bottom: 12px; }
+    .info p { font-size: 0.9rem; color: var(--text-sub); line-height: 1.7; margin-bottom: 10px; }
+    .info ol { padding-left: 20px; color: var(--text-sub); font-size: 0.9rem; line-height: 1.7; }
+    .info ol li { margin-bottom: 6px; }
+    .info ol strong, .info p strong { color: var(--text-main); }
+    .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 400px) { .guide-grid { grid-template-columns: 1fr; } }
+    .guide-card { display: block; text-decoration: none; color: inherit; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 14px; }
+    .guide-card strong { display: block; font-size: 0.92rem; margin-bottom: 4px; color: var(--text-main); }
+    .guide-card span { font-size: 0.78rem; color: var(--text-sub); line-height: 1.5; }
+    .faq dt { font-size: 0.92rem; font-weight: 700; margin-top: 14px; }
+    .faq dd { font-size: 0.88rem; color: var(--text-sub); line-height: 1.65; margin-top: 4px; }
+    .cp-ad { max-width: 380px; margin: 26px auto 0; background: var(--card-bg); border: 1px dashed var(--border-color); border-radius: 14px; padding: 14px 16px; text-align: left; position: relative; }
+    .cp-ad .ad-label { position: absolute; top: 8px; right: 10px; font-size: 0.62rem; color: var(--text-sub); border: 1px solid var(--border-color); border-radius: 4px; padding: 1px 5px; }
+    .cp-ad a { display: block; font-weight: 800; color: #fff; text-decoration: none; font-size: 0.9rem; padding-right: 34px; }
+    .cp-ad .cp-sub { display: block; font-size: 0.76rem; color: var(--text-sub); font-weight: 500; margin-top: 3px; }
+    .cp-ad .cp-disc { font-size: 0.66rem; color: var(--text-sub); margin-top: 8px; line-height: 1.5; }
+    .site-links { margin-top: 24px; font-size: 0.78rem; color: var(--text-sub); line-height: 2; }
+    .site-links a { color: var(--text-sub); margin: 0 6px; text-decoration: none; }
+
     .avoir-promo { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--border-color); max-width: 380px; margin-left: auto; margin-right: auto; }
     .avoir-card {
         display: block; text-decoration: none; position: relative; overflow: hidden;
@@ -264,7 +286,7 @@
         </div>
     </div>
 
-    <p class="section-title" data-i18n="section_title">이런 걸 할 수 있어요</p>
+    <h2 class="section-title" data-i18n="section_title">이런 걸 할 수 있어요</h2>
     <div class="features">
         <a href="app.html?start=compat" class="feature-card pink app-link" data-start="compat">
             <span class="feature-icon">❤️</span>
@@ -282,6 +304,41 @@
             <div class="feature-desc" data-i18n="feat3_desc">다가오는 주기를 예측하고, 서로의 컨디션을 미리 배려할 수 있어요.</div>
         </a>
     </div>
+
+    <section class="info">
+        <h2>30초 커플 테스트는 이렇게 진행돼요</h2>
+        <ol>
+            <li><strong>날짜 하나만 입력</strong> — 최근 생리 시작일과 누구의 날짜인지 고르면 오늘 주기 단계 기준 케미 지수가 바로 나와요. 날짜를 몰라도 “아직 모릅니다”로 추정 결과를 볼 수 있어요.</li>
+            <li><strong>궁합도 궁금하다면</strong> — 두 사람의 MBTI·혈액형·별자리를 아는 만큼만 넣으면 재미로 보는 케미 지수를 계산해요.</li>
+            <li><strong>계속 쓰고 싶을 때만 저장</strong> — “저장하고 계속 쓰기”를 누르면 동의와 닉네임·성별만 입력하고 주기 달력, 기록, 대시보드를 쓸 수 있어요.</li>
+        </ol>
+        <p>결과는 동의나 가입 없이 먼저 보여 드리고, 입력한 정보는 이 기기(브라우저)에만 저장됩니다.</p>
+    </section>
+
+    <section class="info">
+        <h2>커플 궁합·주기 가이드</h2>
+        <p>테스트 전에 읽어 두면 결과를 더 재미있게, 더 현명하게 볼 수 있어요.</p>
+        <div class="guide-grid">
+            <a class="guide-card" href="/guide/couple-test"><strong>❤️ 커플 궁합 테스트</strong><span>테스트 종류와 결과 뒤에 나누면 좋은 질문</span></a>
+            <a class="guide-card" href="/guide/mbti-couple"><strong>💫 MBTI 커플 궁합</strong><span>E/I·S/N·T/F·J/P 차이를 대화로 바꾸는 법</span></a>
+            <a class="guide-card" href="/guide/blood-type"><strong>🩸 혈액형 궁합</strong><span>어디서 왔고, 어떻게 즐기면 좋을까</span></a>
+            <a class="guide-card" href="/guide/period-calculator"><strong>🌙 생리주기 계산·가임기</strong><span>예정일·배란일 추정법과 꼭 알아 둘 한계</span></a>
+        </div>
+    </section>
+
+    <section class="info">
+        <h2>자주 묻는 질문</h2>
+        <dl class="faq">
+            <dt>입력한 정보는 어디에 저장되나요?</dt>
+            <dd>닉네임, 생리 주기, 궁합 정보, 기록은 모두 이 기기(브라우저)에만 저장되고 운영자 서버로 전송되지 않아요. 서비스 개선용 익명 이벤트 통계는 [선택] 동의한 경우에만 보내요. 자세한 내용은 <a href="/privacy" style="color: var(--text-main);">개인정보 처리방침</a>에서 확인할 수 있어요.</dd>
+            <dt>무료인가요?</dt>
+            <dd>네, 회원가입 없이 무료로 쓸 수 있어요. 일부 화면에 광고·제휴 링크가 표시돼요.</dd>
+            <dt>궁합 점수나 배란기 예측을 믿어도 되나요?</dt>
+            <dd>궁합 지수는 재미로 보는 참고용 점수이고, 주기·배란기 예측은 단순 계산에 따른 추정치예요. 의학적 진단이나 피임·임신 판단에는 쓰지 마세요.</dd>
+            <dt>기록을 지우고 싶어요.</dt>
+            <dd>앱의 ‘마이 → 데이터 초기화’를 누르거나 브라우저에서 이 사이트 데이터를 삭제하면 모두 지워져요.</dd>
+        </dl>
+    </section>
 
     <div class="trust">
         <div class="trust-title" data-i18n="trust_title">🔐 왜 안전한가요</div>
@@ -310,6 +367,17 @@
                 </span>
             </a>
         </div>
+
+        <aside class="cp-ad" aria-label="광고">
+            <span class="ad-label">광고</span>
+            <a href="https://link.coupang.com/a/hsdzLh1vB6" target="_blank" rel="sponsored noopener noreferrer nofollow">🎁 기념일 까먹기 전에, 선물은 미리<span class="cp-sub">“우리 며칠째더라?” 묻기 전에 쿠팡에서 커플 선물 둘러보기 →</span></a>
+            <p class="cp-disc">이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+        </aside>
+
+        <nav class="site-links" aria-label="사이트 링크">
+            <a href="/guide/couple-test">커플 궁합 테스트</a><a href="/guide/mbti-couple">MBTI 커플 궁합</a><a href="/guide/blood-type">혈액형 궁합</a><a href="/guide/period-calculator">생리주기 계산</a><br>
+            <a href="/privacy">개인정보 처리방침</a><a href="/terms">이용약관</a>
+        </nav>
     </footer>
 
 </div>
@@ -342,7 +410,7 @@
         trust2: { ko: "입력한 정보는 외부 서버로 전송되지 않고, 이 기기(브라우저)에만 저장됩니다.", en: "Your data is never sent to a server — it's stored only on this device (browser)." },
         trust3: { ko: "의학적 진단을 대체하지 않는 참고용 웰니스 서비스입니다.", en: "A reference wellness service, not a substitute for medical diagnosis." },
         footer_cta: { ko: "❤️ 우리 커플 케미 확인하기", en: "❤️ Check Our Couple Chemistry" },
-        footnote: { ko: "기록은 이 기기에만 저장됩니다.<br>본 서비스는 의학적 진단·치료를 대체하지 않는 참고용 서비스입니다.", en: "Your records are stored only on this device.<br>This service is for reference only and does not replace medical diagnosis or treatment." },
+        footnote: { ko: "관계 기록은 이 기기(브라우저)에만 저장되고, 익명 이벤트 통계는 선택 동의 시에만 수집됩니다.<br>본 서비스는 의학적 진단·치료를 대체하지 않는 참고용 서비스입니다.", en: "Your records are stored only on this device.<br>This service is for reference only and does not replace medical diagnosis or treatment." },
         avoir_catchphrase: { ko: "매일이 새로운 설렘", en: "Every day, a new thrill" },
         avoir_sub: { ko: "오늘의 기분에 어울리는 옷 한 벌", en: "Find the look that matches today's mood" },
         avoir_cta_btn: { ko: "구경하기 →", en: "Shop now →" },
